@@ -1,0 +1,9 @@
+.dayCard {
+    text-align: center;
+    border: 2px solid lightblue;
+    padding: 10px
+}
+
+.dayIcon {
+    height: 18px;
+}
