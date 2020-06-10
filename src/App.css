@@ -14,15 +14,33 @@
 }
 
 .bigText {
-  font-size: 18px;
+  font-size: 50px;
+  font-weight: 900;
 }
 
 .smallText {
-  font-size: 11px;
+  font-size: 14px;
+}
+
+.boldText {
+  font-weight: 600;
 }
 
 .grayText {
   color: #666667
+}
+
+.smallIcon {
+  height: 18px;
+}
+
+.mediumIcon {
+  height: 24px;
+}
+
+.bigIcon {
+  height: 50px;
+  margin-left: 20px;
 }
 
 .mb-2 {

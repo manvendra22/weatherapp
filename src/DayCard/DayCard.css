@@ -1,9 +1,5 @@
 .dayCard {
     text-align: center;
-    border: 2px solid lightblue;
+    border: 2px solid #47ADEA;
     padding: 10px
-}
-
-.dayIcon {
-    height: 18px;
 }

@@ -1,5 +1,25 @@
 .weatherCard {
-    width: 100%;
     padding: 20px;
+    border-radius: 10px;
     box-shadow: 0px 0px 12px -6px rgba(0, 0, 0, 0.75);
+}
+
+.mainRow {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.secondaryRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blueBox {
+    width: 36%;
+    background: #F5FAFE;
+    padding: 10px 15px;
+    text-align: left;
+    margin-bottom: 20px;
 }
