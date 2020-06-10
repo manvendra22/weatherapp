@@ -23,3 +23,8 @@
     text-align: left;
     margin-bottom: 20px;
 }
+
+.mainChart {
+    overflow: scroll;
+    margin-bottom: 20px;
+}
