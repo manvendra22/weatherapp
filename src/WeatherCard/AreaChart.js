@@ -95,6 +95,8 @@ const gradientOffset = () => {
     const dataMax = Math.max(...data.map(i => i.temp));
     const dataMin = Math.min(...data.map(i => i.temp));
 
+    console.log({ dataMax }, { dataMin })
+
     if (dataMax <= 20) {
         return 0;
     }
@@ -102,10 +104,12 @@ const gradientOffset = () => {
         return 1;
     }
 
+    // return 0.5
     return dataMax / (dataMax - dataMin);
 };
 
 const off = gradientOffset();
+console.log({ off })
 
 export default function MainChart() {
     return (
@@ -121,7 +125,7 @@ export default function MainChart() {
                         <stop offset={off} stopColor="red" stopOpacity={1} />
                     </linearGradient>
                 </defs>
-                <Area type="monotone" dataKey="temp" stroke="#3CABEB" strokeWidth={3} animationDuration={5000} dot={false} />
+                <Area type="basis" dataKey="temp" animationDuration={5000} dot={false} fill="url(#splitColor)" />
             </AreaChart>
         </ResponsiveContainer>
     );

@@ -104,7 +104,7 @@ export default function MainChart() {
             <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
             <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick />} axisLine={false} />
             <YAxis domain={['dataMin', 'auto']} hide={true} />
-            <Line type="monotone" dataKey="temp" stroke="#3CABEB" strokeWidth={3} animationDuration={5000} dot={{ r: 4 }} />
+            <Line type="basis" dataKey="temp" stroke="#3CABEB" strokeWidth={3} animationDuration={5000} dot={{ r: 4 }} />
         </LineChart>
     );
 }
