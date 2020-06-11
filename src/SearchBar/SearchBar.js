@@ -7,12 +7,12 @@ import search from '../icons/search.svg'
 import { getIcon } from '../utility'
 
 function SearchBar(props) {
-    const { value, setValue, cityData, handleCityClick } = props
+    const { value, setValue, cityData, handleCityClick, setCurrentLocation } = props
 
     return (
         <div className="search">
             <div className="searchContainer">
-                <img src={pin} alt="dayIcon" className="inputIcon" />
+                <img src={pin} alt="dayIcon" className="inputIcon" onClick={setCurrentLocation} />
                 <input type="text" className="searchbar" value={value} onChange={e => setValue(e.target.value)} />
                 <img src={search} alt="dayIcon" className="inputIcon" />
             </div>
