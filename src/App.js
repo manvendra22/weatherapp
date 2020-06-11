@@ -7,6 +7,7 @@ import WeatherCard from './WeatherCard/WeatherCard'
 
 function App() {
   const [data, setData] = useState({})
+  const [selected, setSelected] = useState(0)
 
   useEffect(function () {
     getLocation()
@@ -47,8 +48,8 @@ function App() {
   return (
     <div className="app">
       <SearchBar />
-      <Days data={data.daily} />
-      <WeatherCard data={data} />
+      <Days data={data.daily} selected={selected} setSelected={setSelected} />
+      <WeatherCard data={data} selected={selected} />
     </div>
   );
 }

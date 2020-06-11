@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import './WeatherCard.css'
 import LineChart from './LineChart'
@@ -6,7 +7,15 @@ import AreaChart from './AreaChart'
 
 import sun from '../icons/sun.svg'
 
-function WeatherCard() {
+function WeatherCard(props) {
+    const { data, selected } = props
+    const { daily = [], hourly } = data
+    const current = daily[selected]
+    const { pressure, humidity, sunrise, sunset } = current || {}
+
+    const sunriseTime = moment.unix(sunrise).format('h:mma')
+    const sunsetTime = moment.unix(sunset).format('h:mma')
+
     return (
         <div className="weatherCard">
             <div className="mainRow">
@@ -14,30 +23,30 @@ function WeatherCard() {
                 <img src={sun} alt="bigIcon" className="bigIcon" />
             </div>
             <div className="mainChart">
-                <LineChart />
+                <LineChart data={hourly} />
             </div>
             <div className="secondaryRow">
                 <div className="blueBox">
                     <div className="boldText mb-2">Pressure</div>
-                    <div className="">1013 hpa</div>
+                    <div>{pressure} hpa</div>
                 </div>
                 <div className="blueBox">
                     <div className="boldText mb-2">Humidity</div>
-                    <div className="">93 %</div>
+                    <div>{humidity} %</div>
                 </div>
             </div>
             <div className="areaChartRow">
-                <div className="">
+                <div>
                     <div className="boldText mb-2">Sunrise</div>
-                    <div className="grayText">7:22am</div>
+                    <div className="grayText">{sunriseTime}</div>
                 </div>
-                <div className="">
+                <div>
                     <div className="boldText mb-2">Sunset</div>
-                    <div className="grayText">6:12pm</div>
+                    <div className="grayText">{sunsetTime}</div>
                 </div>
             </div>
             <div className="subChart">
-                <AreaChart />
+                <AreaChart data={hourly} />
             </div>
         </div>
     );
