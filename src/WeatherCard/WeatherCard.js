@@ -1,7 +1,8 @@
 import React from 'react';
 
 import './WeatherCard.css'
-import MainChart from './MainChart'
+import LineChart from './LineChart'
+import AreaChart from './AreaChart'
 
 import sun from '../icons/sun.svg'
 
@@ -13,7 +14,7 @@ function WeatherCard() {
                 <img src={sun} alt="bigIcon" className="bigIcon" />
             </div>
             <div className="mainChart">
-                <MainChart />
+                <LineChart />
             </div>
             <div className="secondaryRow">
                 <div className="blueBox">
@@ -25,7 +26,9 @@ function WeatherCard() {
                     <div className="">93 %</div>
                 </div>
             </div>
-            <div className="subGraph"></div>
+            <div className="subChart">
+                <AreaChart />
+            </div>
         </div>
     );
 }

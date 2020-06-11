@@ -15,67 +15,67 @@ const data = [
         time: '11am', temp: 24,
     },
     {
-        time: '12am', temp: 25,
+        time: '12am', temp: 26,
     },
     {
         time: '1pm', temp: 29,
     },
     {
-        time: '2pm', temp: 28,
+        time: '2pm', temp: 29,
     },
     {
-        time: '3pm', temp: 28,
+        time: '3pm', temp: 29,
     },
     {
         time: '4pm', temp: 28,
     },
     {
-        time: '5pm', temp: 21,
+        time: '5pm', temp: 27,
     },
     {
-        time: '6pm', temp: 22,
+        time: '6pm', temp: 26,
     },
     {
-        time: '7pm', temp: 24,
+        time: '7pm', temp: 25,
     },
     {
-        time: '8pm', temp: 25,
+        time: '8pm', temp: 24,
     },
     {
-        time: '9pm', temp: 29,
+        time: '9pm', temp: 24,
     },
     {
-        time: '10pm', temp: 28,
+        time: '10pm', temp: 23,
     },
     {
-        time: '11pm', temp: 28,
+        time: '11pm', temp: 22,
     },
     {
-        time: '12am', temp: 28,
+        time: '12am', temp: 20,
     },
     {
-        time: '1am', temp: 21,
+        time: '1am', temp: 19,
     },
     {
-        time: '2am', temp: 22,
+        time: '2am', temp: 17,
     },
     {
-        time: '3am', temp: 24,
+        time: '3am', temp: 17,
     },
     {
-        time: '4am', temp: 25,
+        time: '4am', temp: 16,
     },
     {
-        time: '5am', temp: 29,
+        time: '5am', temp: 16,
     },
     {
-        time: '6am', temp: 28,
+        time: '6am', temp: 17,
     },
     {
-        time: '7am', temp: 28,
+        time: '7am', temp: 20,
     },
     {
-        time: '8am', temp: 28,
+        time: '8am', temp: 20,
     },
 ];
 
@@ -103,7 +103,7 @@ export default function MainChart() {
         >
             <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
             <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick />} axisLine={false} />
-            <YAxis hide={true} />
+            <YAxis domain={['dataMin', 'auto']} hide={true} />
             <Line type="monotone" dataKey="temp" stroke="#3CABEB" strokeWidth={3} animationDuration={5000} dot={{ r: 4 }} />
         </LineChart>
     );
