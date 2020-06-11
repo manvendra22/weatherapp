@@ -65,7 +65,7 @@ export default function MainChart(props) {
                         <stop offset={off} stopColor="red" stopOpacity={1} />
                     </linearGradient>
                 </defs>
-                <Area type="basis" dataKey="temp" animationDuration={5000} dot={false} fill="url(#splitColor)" />
+                <Area type="basis" dataKey="temp" dot={false} fill="url(#splitColor)" />
             </AreaChart>
         </ResponsiveContainer>
     );
