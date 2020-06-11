@@ -52,7 +52,7 @@ function WeatherCard(props) {
                             </div>
                         </div>
                         <div className="subChart">
-                            <AreaChart data={hourly} />
+                            <AreaChart data={hourly} selected={selected} />
                         </div>
                     </>
             }
