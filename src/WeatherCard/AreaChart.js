@@ -8,7 +8,7 @@ import {
 
 function CustomizedAxisTick(props) {
     const {
-        x, y, payload, sunriseTime, sunsetTime
+        x, y, payload
     } = props;
 
     return (
@@ -18,54 +18,34 @@ function CustomizedAxisTick(props) {
     );
 }
 
-const gradientOffset = (data, sunriseTime, sunsetTime) => {
-    const dataMax = Math.max(...data.map(i => i.temp));
-    const dataMin = Math.min(...data.map(i => i.temp));
-
-    console.log({ dataMax }, { dataMin })
-
-    if (dataMax <= 20) {
-        return 0;
-    }
-    if (dataMin >= 20) {
-        return 1;
-    }
-
-    // return 0.5
-    return dataMax / (dataMax - dataMin);
-};
-
-
 export default function MainChart(props) {
-    const { data = [], selected, sunriseTime, sunsetTime } = props
+    const { data = [], selected, sunrise, sunset } = props
 
-    const chartData = data.map(value => {
-        return {
-            time: moment.unix(value.dt).format('ha'), temp: Math.round(value.temp),
-        }
-    })
+    let initialDegree = -90
+    let initialTime = 0
+    let newdata = []
 
-    const firstChartData = chartData.filter((value, index) => index < 24)
-    const secondChartData = chartData.filter((value, index) => index > 23)
+    for (let i = 0; i < 24; i++) {
+        newdata.push({
+            time: initialTime, degree: initialDegree
+        })
 
-    const mainChartData = selected % 2 === 0 ? firstChartData : secondChartData
+        initialDegree += 15
+        initialTime += 1
+    }
 
-    const off = gradientOffset(mainChartData, sunriseTime, sunsetTime);
+    // const sunriseTime = moment.unix(sunrise).format('ha')
+    // const sunsetTime = moment.unix(sunset).format('ha')
+    // const middleTime = moment.unix((sunrise + sunset / 2)).format('ha')
 
     return (
         <ResponsiveContainer width='100%' height={150}>
             <AreaChart
-                data={mainChartData}
+                data={newdata}
             >
-                <XAxis dataKey="time" tickLine={true} height={50} interval={'preserveStartEnd'} tick={<CustomizedAxisTick sunriseTime={sunriseTime} sunsetTime={sunsetTime} />} />
+                <XAxis dataKey="time" tickLine={true} height={50} interval={'preserveStartEnd'} tick={<CustomizedAxisTick />} />
                 <YAxis domain={['dataMin', 'auto']} hide={true} />
-                <defs>
-                    <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset={off} stopColor="#FEE9BB" stopOpacity={1} />
-                        <stop offset={off} stopColor="#666667" stopOpacity={1} />
-                    </linearGradient>
-                </defs>
-                <Area type="basis" dataKey="temp" dot={false} stroke="#FBE2AC" fill="url(#splitColor)" />
+                <Area type="basis" dataKey="degree" dot={false} stroke="#FBE2AC" fill="url(#splitColor)" fillOpacity={1} />
             </AreaChart>
         </ResponsiveContainer>
     );

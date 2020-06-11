@@ -56,9 +56,9 @@ function WeatherCard(props) {
                                 <div className="grayText">{sunsetTime}</div>
                             </div>
                         </div>
-                        <div className="subChart">
-                            <AreaChart data={hourly} selected={selected} sunriseTime={sunriseTime} sunsetTime={sunsetTime} />
-                        </div>
+                        {/* <div className="subChart">
+                            <AreaChart data={hourly} selected={selected} sunrise={sunrise} sunset={sunset} />
+                        </div> */}
                     </>
             }
         </div>
