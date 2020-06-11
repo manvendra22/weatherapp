@@ -14,6 +14,9 @@ function App() {
         <DayCard />
         <DayCard />
         <DayCard />
+        <DayCard />
+        <DayCard />
+        <DayCard />
       </div>
       <WeatherCard />
     </div>

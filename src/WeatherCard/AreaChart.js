@@ -92,13 +92,13 @@ function CustomizedAxisTick(props) {
 }
 
 const gradientOffset = () => {
-    const dataMax = Math.max(...data.map(i => i.uv));
-    const dataMin = Math.min(...data.map(i => i.uv));
+    const dataMax = Math.max(...data.map(i => i.temp));
+    const dataMin = Math.min(...data.map(i => i.temp));
 
-    if (dataMax <= 0) {
+    if (dataMax <= 20) {
         return 0;
     }
-    if (dataMin >= 0) {
+    if (dataMin >= 20) {
         return 1;
     }
 
