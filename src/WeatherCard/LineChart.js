@@ -1,10 +1,11 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
+import moment from 'moment';
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid,
 } from 'recharts';
 
-const data = [
+const dummyData = [
     {
         time: '9am', temp: 21,
     },
@@ -84,7 +85,7 @@ function CustomizedAxisTick(props) {
         x, y, payload,
     } = props;
 
-    let yValue = data.find(val => val.time === payload.value)
+    let yValue = dummyData.find(val => val.time === payload.value)
 
     return (
         <g transform={`translate(${x},${y})`}>
@@ -94,12 +95,24 @@ function CustomizedAxisTick(props) {
     );
 }
 
-export default function MainChart() {
+export default function MainChart(props) {
+    const { data = [] } = props
+
+    const chartData = data.length && data.map(value => {
+        return {
+            time: moment.unix(value.dt).format('ha'), temp: Math.round(value.temp),
+        }
+    })
+
+    console.log({ chartData })
+
+    console.log({ props })
+
     return (
         <LineChart
             width={1300}
             height={150}
-            data={data}
+            data={dummyData}
         >
             <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
             <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick />} axisLine={false} />

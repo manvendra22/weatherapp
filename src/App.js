@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ContentLoader from "react-content-loader"
+
 import './App.css';
 
 import Days from './Days/Days'
@@ -16,7 +18,8 @@ function App() {
   }, [])
 
   useEffect(function () {
-    fetchCityData(city)
+    if (city)
+      fetchCityData(city)
   }, [city])
 
   function getLocation() {
@@ -53,7 +56,7 @@ function App() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_API_KEY}`)
       .then(response => response.json())
       .then(data => {
-        console.log({ data })
+        // console.log({ data })
         // setCityData(data)
       });
   }
