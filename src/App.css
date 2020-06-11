@@ -3,9 +3,9 @@
   margin: 20px;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 750px) {
   .app {
-    max-width: 700px;
+    max-width: 750px;
     margin: 20px auto;
   }
 }
