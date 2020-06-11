@@ -54,13 +54,13 @@ function App() {
   }
 
   function ipLookUp(flag) {
-    fetch('http://ip-api.com/json')
+    fetch('https://ipapi.co/json')
       .then(response => response.json())
       .then(data => {
         if (flag) {
           fetchLocationData(data.lat, data.lon)
         }
-        setCity(`${data.city}, ${data.countryCode}`)
+        setCity(`${data.city}, ${data.country_code}`)
       });
   }
 
