@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import _ from "lodash";
 
 import './App.css';
 
@@ -11,15 +12,23 @@ function App() {
   const [selected, setSelected] = useState(0)
   const [cityData, setCityData] = useState({})
   const [city, setCity] = useState('')
+  const [isLoading, setisLoading] = useState(true)
 
   useEffect(function () {
     getLocation()
   }, [])
 
-  useEffect(function () {
-    if (city)
-      fetchCityData(city)
-  }, [city])
+  const delayedQuery = useCallback(_.debounce(q => fetchCityData(q), 500), []);
+
+  function setCityValue(value) {
+    setCity(value)
+    delayedQuery(value)
+  }
+
+  function handleCityClick() {
+    fetchLocationData(cityData?.coord?.lat, cityData?.coord?.lon)
+    setCityValue('')
+  }
 
   function getLocation() {
     if ("geolocation" in navigator) {
@@ -46,27 +55,28 @@ function App() {
   }
 
   function fetchLocationData(latitude, longitude) {
+    setisLoading(true)
     fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
       .then(response => response.json())
-      .then(data => setData(data));
-  }
-
-  function fetchCityData(cityName) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_API_KEY}`)
-      .then(response => response.json())
       .then(data => {
-        // console.log({ data })
-        // setCityData(data)
+        setData(data)
+        setisLoading(false)
       });
   }
 
-  console.log({ data })
+  function fetchCityData(cityName) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        setCityData(data)
+      });
+  }
 
   return (
     <div className="app">
-      <SearchBar value={city} setValue={setCity} cityData={cityData} />
-      <Days data={data.daily} selected={selected} setSelected={setSelected} />
-      <WeatherCard data={data} selected={selected} />
+      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} />
+      <Days data={data.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
+      <WeatherCard data={data} selected={selected} isLoading={isLoading} />
     </div>
   );
 }
