@@ -9,7 +9,7 @@ import Loader from './Loader'
 import { getIcon } from '../utility'
 
 function WeatherCard(props) {
-    const { data, selected } = props
+    const { data, selected, isLoading } = props
     const { daily = [], hourly = [] } = data
     const current = daily[selected]
     const { pressure, humidity, sunrise, sunset } = current || {}
@@ -25,7 +25,7 @@ function WeatherCard(props) {
     return (
         <div className="weatherCard">
             {
-                Object.keys(data).length === 0 ?
+                isLoading ?
                     <Loader />
                     :
                     <>
