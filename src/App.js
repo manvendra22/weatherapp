@@ -8,10 +8,16 @@ import WeatherCard from './WeatherCard/WeatherCard'
 function App() {
   const [data, setData] = useState({})
   const [selected, setSelected] = useState(0)
+  const [cityData, setCityData] = useState({})
+  const [city, setCity] = useState('')
 
   useEffect(function () {
     getLocation()
   }, [])
+
+  useEffect(function () {
+    fetchCityData(city)
+  }, [city])
 
   function getLocation() {
     if ("geolocation" in navigator) {
@@ -43,11 +49,20 @@ function App() {
       .then(data => setData(data));
   }
 
+  function fetchCityData(cityName) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_API_KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log({ data })
+        // setCityData(data)
+      });
+  }
+
   console.log({ data })
 
   return (
     <div className="app">
-      <SearchBar />
+      <SearchBar value={city} setValue={setCity} cityData={cityData} />
       <Days data={data.daily} selected={selected} setSelected={setSelected} />
       <WeatherCard data={data} selected={selected} />
     </div>
