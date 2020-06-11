@@ -4,13 +4,13 @@ import './Days.css';
 import DayCard from './DayCard'
 
 function Days(props) {
-    const { data = [] } = props
+    const { data = [], selected, setSelected } = props
 
     return (
         <div className="days">
             {
-                data.map(dayData =>
-                    <DayCard key={dayData.dt} data={dayData} />
+                data.map((dayData, index) =>
+                    <DayCard key={dayData.dt} data={dayData} active={index === selected} onClick={() => setSelected(index)} />
                 )
             }
         </div>

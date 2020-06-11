@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+
 import './Days.css';
 
 import sun from '../icons/sun.svg'
@@ -6,19 +8,16 @@ import rain from '../icons/rain.svg'
 import cloudy from '../icons/cloudy.svg'
 
 function DayCard(props) {
-    const { data } = props
+    const { data, active, onClick } = props
     const { dt, temp, weather } = data
     const { max, min } = temp
     const { id, main } = weather[0]
 
-    const date = new Date(dt * 1000)
-    const day = date.getDay()
-
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const day = moment.unix(dt).format('ddd');
 
     return (
-        <div className="dayCard">
-            <div className="mb-2">{days[day]}</div>
+        <div className={`dayCard ${active ? 'dayActive' : ''}`} onClick={onClick}>
+            <div className="mb-2">{day}</div>
             <div className="mb-4"><span>{Math.round(max)}&deg;</span> <span className="grayText">{Math.round(min)}&deg;</span></div>
             <div className="mb-4">
                 <img src={getIcon(id)} alt="dayIcon" className="smallIcon" />
