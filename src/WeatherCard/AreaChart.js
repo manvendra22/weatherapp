@@ -8,7 +8,7 @@ import {
 
 function CustomizedAxisTick(props) {
     const {
-        x, y, payload,
+        x, y, payload, sunriseTime, sunsetTime
     } = props;
 
     return (
@@ -18,7 +18,7 @@ function CustomizedAxisTick(props) {
     );
 }
 
-const gradientOffset = (data) => {
+const gradientOffset = (data, sunriseTime, sunsetTime) => {
     const dataMax = Math.max(...data.map(i => i.temp));
     const dataMin = Math.min(...data.map(i => i.temp));
 
@@ -37,7 +37,7 @@ const gradientOffset = (data) => {
 
 
 export default function MainChart(props) {
-    const { data = [], selected } = props
+    const { data = [], selected, sunriseTime, sunsetTime } = props
 
     const chartData = data.map(value => {
         return {
@@ -50,22 +50,22 @@ export default function MainChart(props) {
 
     const mainChartData = selected % 2 === 0 ? firstChartData : secondChartData
 
-    const off = gradientOffset(mainChartData);
+    const off = gradientOffset(mainChartData, sunriseTime, sunsetTime);
 
     return (
         <ResponsiveContainer width='100%' height={150}>
             <AreaChart
                 data={mainChartData}
             >
-                <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={false} />
-                <YAxis domain={[20, 'auto']} hide={true} />
+                <XAxis dataKey="time" tickLine={true} height={50} interval={'preserveStartEnd'} tick={<CustomizedAxisTick sunriseTime={sunriseTime} sunsetTime={sunsetTime} />} />
+                <YAxis domain={['dataMin', 'auto']} hide={true} />
                 <defs>
                     <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset={off} stopColor="green" stopOpacity={1} />
-                        <stop offset={off} stopColor="red" stopOpacity={1} />
+                        <stop offset={off} stopColor="#FEE9BB" stopOpacity={1} />
+                        <stop offset={off} stopColor="#666667" stopOpacity={1} />
                     </linearGradient>
                 </defs>
-                <Area type="basis" dataKey="temp" dot={false} fill="url(#splitColor)" />
+                <Area type="basis" dataKey="temp" dot={false} stroke="#FBE2AC" fill="url(#splitColor)" />
             </AreaChart>
         </ResponsiveContainer>
     );

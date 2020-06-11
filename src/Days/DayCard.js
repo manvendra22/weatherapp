@@ -3,9 +3,7 @@ import moment from 'moment';
 
 import './Days.css';
 
-import sun from '../icons/sun.svg'
-import rain from '../icons/rain.svg'
-import cloudy from '../icons/cloudy.svg'
+import { getIcon } from '../utility'
 
 function DayCard(props) {
     const { data, active, onClick } = props
@@ -25,26 +23,6 @@ function DayCard(props) {
             <div className="smallText grayText">{main}</div>
         </div>
     );
-}
-
-function getIcon(id) {
-    // '800': sun,
-    // '50x': rain,
-    // '80x': cloudy,
-    // '30x': 'drizzle',
-    // '20x': 'thunder'
-
-    switch (id) {
-        case 800:
-            return sun;
-        case 801:
-        case 802:
-        case 803:
-        case 804:
-            return cloudy;
-        default:
-            return rain;
-    }
 }
 
 export default DayCard;

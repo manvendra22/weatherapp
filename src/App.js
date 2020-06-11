@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ContentLoader from "react-content-loader"
 
 import './App.css';
 

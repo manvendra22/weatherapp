@@ -6,16 +6,21 @@ import LineChart from './LineChart'
 import AreaChart from './AreaChart'
 import Loader from './Loader'
 
-import sun from '../icons/sun.svg'
+import { getIcon } from '../utility'
 
 function WeatherCard(props) {
     const { data, selected } = props
-    const { daily = [], hourly } = data
+    const { daily = [], hourly = [] } = data
     const current = daily[selected]
     const { pressure, humidity, sunrise, sunset } = current || {}
 
     const sunriseTime = moment.unix(sunrise).format('h:mma')
     const sunsetTime = moment.unix(sunset).format('h:mma')
+
+    const currentTime = moment().format('h')
+    const currentData = hourly.find(value => currentTime === moment.unix(value.dt).format('h'))
+    const currentTemp = Math.round(currentData?.temp)
+    const id = currentData?.weather[0]?.id
 
     return (
         <div className="weatherCard">
@@ -25,8 +30,8 @@ function WeatherCard(props) {
                     :
                     <>
                         <div className="mainRow">
-                            <span className="bigText">26&deg;C</span>
-                            <img src={sun} alt="bigIcon" className="bigIcon" />
+                            <span className="bigText">{currentTemp}&deg;C</span>
+                            <img src={getIcon(id)} alt="bigIcon" className="bigIcon" />
                         </div>
                         <div className="mainChart">
                             <LineChart data={hourly} selected={selected} />
@@ -52,7 +57,7 @@ function WeatherCard(props) {
                             </div>
                         </div>
                         <div className="subChart">
-                            <AreaChart data={hourly} selected={selected} />
+                            <AreaChart data={hourly} selected={selected} sunriseTime={sunriseTime} sunsetTime={sunsetTime} />
                         </div>
                     </>
             }
