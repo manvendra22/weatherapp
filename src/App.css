@@ -14,13 +14,6 @@
   margin-bottom: 30px;
 }
 
-.days {
-  display: flex;
-  flex-wrap: nowrap;
-  margin-bottom: 20px;
-  overflow-x: auto;
-}
-
 .bigText {
   font-size: 50px;
   font-weight: 900;
@@ -49,6 +42,10 @@
 .bigIcon {
   height: 50px;
   margin-left: 20px;
+}
+
+.ml-0 {
+  margin-left: 0px;
 }
 
 .mb-2 {
