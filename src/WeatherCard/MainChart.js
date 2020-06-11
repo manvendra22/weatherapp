@@ -1,94 +1,95 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
 import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid
+    LineChart, Line, XAxis, YAxis, CartesianGrid,
 } from 'recharts';
 
 const data = [
     {
-        name: '9 AM', temp: 21,
+        time: '9am', temp: 21,
     },
     {
-        name: '10 AM', temp: 22,
+        time: '10am', temp: 22,
     },
     {
-        name: '11 AM', temp: 24,
+        time: '11am', temp: 24,
     },
     {
-        name: '12 AM', temp: 25,
+        time: '12am', temp: 25,
     },
     {
-        name: '1 PM', temp: 29,
+        time: '1pm', temp: 29,
     },
     {
-        name: '2 PM', temp: 28,
+        time: '2pm', temp: 28,
     },
     {
-        name: '3 PM', temp: 28,
+        time: '3pm', temp: 28,
     },
     {
-        name: '4 PM', temp: 28,
+        time: '4pm', temp: 28,
     },
     {
-        name: '5 PM', temp: 21,
+        time: '5pm', temp: 21,
     },
     {
-        name: '6 PM', temp: 22,
+        time: '6pm', temp: 22,
     },
     {
-        name: '7 PM', temp: 24,
+        time: '7pm', temp: 24,
     },
     {
-        name: '8 PM', temp: 25,
+        time: '8pm', temp: 25,
     },
     {
-        name: '9 PM', temp: 29,
+        time: '9pm', temp: 29,
     },
     {
-        name: '10 PM', temp: 28,
+        time: '10pm', temp: 28,
     },
     {
-        name: '11 PM', temp: 28,
+        time: '11pm', temp: 28,
     },
     {
-        name: '12 AM', temp: 28,
+        time: '12am', temp: 28,
     },
     {
-        name: '1 AM', temp: 21,
+        time: '1am', temp: 21,
     },
     {
-        name: '2 AM', temp: 22,
+        time: '2am', temp: 22,
     },
     {
-        name: '3 AM', temp: 24,
+        time: '3am', temp: 24,
     },
     {
-        name: '4 AM', temp: 25,
+        time: '4am', temp: 25,
     },
     {
-        name: '5 AM', temp: 29,
+        time: '5am', temp: 29,
     },
     {
-        name: '6 AM', temp: 28,
+        time: '6am', temp: 28,
     },
     {
-        name: '7 AM', temp: 28,
+        time: '7am', temp: 28,
     },
     {
-        name: '8 AM', temp: 28,
+        time: '8am', temp: 28,
     },
 ];
 
 function CustomizedAxisTick(props) {
     const {
-        x, y, stroke, payload,
+        x, y, payload,
     } = props;
 
-    console.log(props)
+    let yValue = data.find(val => val.time === payload.value)
 
     return (
         <g transform={`translate(${x},${y})`}>
-            <text x={0} y={0} dy={16} textAnchor="end" fill="#666">{payload.value}</text>
+            <text dy={20} textAnchor="middle" fontSize={14} fontWeight={600} >{yValue.temp}&deg;</text>
+            <text dy={40} textAnchor="middle" fill="#666667" fontSize={14} fontWeight={600} >{payload.value}</text>
         </g>
     );
 }
@@ -96,14 +97,14 @@ function CustomizedAxisTick(props) {
 export default function MainChart() {
     return (
         <LineChart
-            width={900}
-            height={200}
+            width={1300}
+            height={150}
             data={data}
         >
             <CartesianGrid horizontal={false} />
-            <XAxis dataKey="name" height={50} tick={<CustomizedAxisTick />} axisLine={false} />
+            <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick />} axisLine={false} />
             <YAxis hide={true} />
-            <Line type="monotone" dataKey="temp" stroke="#89D3E2" />
+            <Line type="monotone" dataKey="temp" stroke="#47ADEA" strokeWidth={3} animationDuration={5000} />
         </LineChart>
     );
 }
