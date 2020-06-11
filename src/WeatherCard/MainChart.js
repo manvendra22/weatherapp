@@ -101,10 +101,10 @@ export default function MainChart() {
             height={150}
             data={data}
         >
-            <CartesianGrid horizontal={false} />
+            <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
             <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick />} axisLine={false} />
             <YAxis hide={true} />
-            <Line type="monotone" dataKey="temp" stroke="#47ADEA" strokeWidth={3} animationDuration={5000} />
+            <Line type="monotone" dataKey="temp" stroke="#3CABEB" strokeWidth={3} animationDuration={5000} dot={{ r: 4 }} />
         </LineChart>
     );
 }
