@@ -9,9 +9,10 @@ import WeatherCard from './WeatherCard/WeatherCard'
 
 function App() {
   const [data, setData] = useState({})
-  const [selected, setSelected] = useState(0)
   const [cityData, setCityData] = useState({})
+
   const [city, setCity] = useState('')
+  const [selected, setSelected] = useState(0)
   const [isLoading, setisLoading] = useState(true)
 
   useEffect(function () {
@@ -27,7 +28,8 @@ function App() {
 
   function handleCityClick() {
     fetchLocationData(cityData?.coord?.lat, cityData?.coord?.lon)
-    setCityValue('')
+    setCity(`${cityData?.name}, ${cityData?.sys?.country}`)
+    setCityData({})
   }
 
   function setCurrentLocation() {
@@ -35,6 +37,7 @@ function App() {
   }
 
   function getLocation() {
+    ipLookUp(false)
     if ("geolocation" in navigator) {
       // check if geolocation is supported/enabled on current browser
       navigator.geolocation.getCurrentPosition(
@@ -45,16 +48,19 @@ function App() {
           console.error('An error has occured while retrieving location', error)
         })
     } else {
-      // geolocation is not supported, using ipLookUp to get location
-      ipLookUp()
+      // geolocation is not supported, using ipLookUp to get location by passing flag true
+      ipLookUp(true)
     }
   }
 
-  function ipLookUp() {
+  function ipLookUp(flag) {
     fetch('http://ip-api.com/json')
       .then(response => response.json())
       .then(data => {
-        fetchLocationData(data.lat, data.lon)
+        if (flag) {
+          fetchLocationData(data.lat, data.lon)
+        }
+        setCity(`${data.city}, ${data.countryCode}`)
       });
   }
 
