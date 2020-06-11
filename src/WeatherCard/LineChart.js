@@ -14,8 +14,8 @@ function CustomizedAxisTick(props) {
 
     return (
         <g transform={`translate(${x},${y})`}>
-            <text dy={20} textAnchor="middle" fontSize={14} fontWeight={600} >{yValue.temp}&deg;</text>
-            <text dy={40} textAnchor="middle" fill="#666667" fontSize={14} fontWeight={600} >{payload.value}</text>
+            <text dy={20} textAnchor="middle" fontSize={14} fontWeight={500} >{yValue.temp}&deg;</text>
+            <text dy={40} textAnchor="middle" fill="#666667" fontSize={14} fontWeight={500} >{payload.value}</text>
         </g>
     );
 }
