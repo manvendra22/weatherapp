@@ -29,7 +29,7 @@ function WeatherCard(props) {
                             <img src={sun} alt="bigIcon" className="bigIcon" />
                         </div>
                         <div className="mainChart">
-                            <LineChart data={hourly} />
+                            <LineChart data={hourly} selected={selected} />
                         </div>
                         <div className="secondaryRow">
                             <div className="blueBox">
