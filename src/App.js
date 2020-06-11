@@ -30,6 +30,10 @@ function App() {
     setCityValue('')
   }
 
+  function setCurrentLocation() {
+    getLocation()
+  }
+
   function getLocation() {
     if ("geolocation" in navigator) {
       // check if geolocation is supported/enabled on current browser
@@ -74,7 +78,7 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} />
+      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={setCurrentLocation} />
       <Days data={data.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
       <WeatherCard data={data} selected={selected} isLoading={isLoading} />
     </div>
