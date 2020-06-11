@@ -26,6 +26,16 @@ function WeatherCard() {
                     <div className="">93 %</div>
                 </div>
             </div>
+            <div className="areaChartRow">
+                <div className="">
+                    <div className="boldText mb-2">Sunrise</div>
+                    <div className="grayText">7:22am</div>
+                </div>
+                <div className="">
+                    <div className="boldText mb-2">Sunset</div>
+                    <div className="grayText">6:12pm</div>
+                </div>
+            </div>
             <div className="subChart">
                 <AreaChart />
             </div>

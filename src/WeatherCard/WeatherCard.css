@@ -14,6 +14,12 @@
 .secondaryRow {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.areaChartRow {
+    display: flex;
+    justify-content: space-between;
 }
 
 .blueBox {
@@ -21,7 +27,6 @@
     background: #F5FAFF;
     padding: 10px 15px;
     text-align: left;
-    margin-bottom: 20px;
 }
 
 .mainChart {
