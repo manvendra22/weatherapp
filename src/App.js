@@ -67,7 +67,6 @@ function App() {
   }
 
   function getLocation() {
-    ipLookUp(false)
     if ("geolocation" in navigator) {
       // check if geolocation is supported/enabled on current browser
       navigator.geolocation.getCurrentPosition(
@@ -107,6 +106,7 @@ function App() {
   }
 
   async function fetchLocationData(latitude, longitude) {
+    ipLookUp(false)
     setIsLoading(true)
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
     const data = await response.json()
