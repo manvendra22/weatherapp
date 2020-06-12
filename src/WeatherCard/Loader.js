@@ -12,7 +12,7 @@ const Loader = () => (
         <rect x="0" y="90" rx="5" ry="5" width="100%" height="120" />
         <rect x="0" y="230" rx="5" ry="5" width="100%" height="50" />
         <rect x="0" y="310" rx="5" ry="5" width="100%" height="50" />
-        <rect x="0" y="370" rx="5" ry="5" width="100%" height="120" />
+        <rect x="0" y="390" rx="5" ry="5" width="100%" height="120" />
     </ContentLoader>
 )
 
