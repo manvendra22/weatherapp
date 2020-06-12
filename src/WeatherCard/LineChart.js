@@ -29,8 +29,8 @@ export default function MainChart(props) {
         }
     })
 
-    const firstChartData = chartData.filter((value, index) => index < 24)
-    const secondChartData = chartData.filter((value, index) => index > 23)
+    const firstChartData = chartData.slice(0, 24)
+    const secondChartData = chartData.slice(24, 48)
 
     const mainChartData = selected % 2 === 0 ? firstChartData : secondChartData
 
