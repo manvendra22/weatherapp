@@ -20,7 +20,7 @@ function SearchBar(props) {
             {cityData?.cod === 200 ?
                 <div className="cityContainer">
                     <div className="cityData" onClick={handleCityClick}>
-                        <div className="grayText">{`${cityData.name}, ${cityData.sys.country}`}</div>
+                        <div className="">{`${cityData.name}, ${cityData.sys.country}`}</div>
                         <div className="cityWeather">
                             <div className="mr-10">
                                 <div className="boldText">{Math.round(cityData.main.temp)}&deg; C</div>
