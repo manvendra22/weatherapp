@@ -6,7 +6,7 @@ import LineChart from './LineChart'
 import AreaChart from './AreaChart'
 import Loader from './Loader'
 
-import { getIcon } from '../utility'
+import { getWeather } from '../utility'
 
 function WeatherCard(props) {
     const { data, selected, isLoading } = props
@@ -20,7 +20,8 @@ function WeatherCard(props) {
     const currentTime = moment().format('h')
     const currentData = hourly.find(value => currentTime === moment.unix(value.dt).format('h'))
     const currentTemp = Math.round(currentData?.temp)
-    const id = currentData?.weather[0]?.id
+
+    const weatherDetails = getWeather(currentData?.weather?.[0]?.id)
 
     return (
         <div className="weatherCard">
@@ -31,7 +32,7 @@ function WeatherCard(props) {
                     <>
                         <div className="mainRow">
                             <span className="bigText">{currentTemp}&deg;C</span>
-                            <img src={getIcon(id)} alt="bigIcon" className="bigIcon" />
+                            <img src={weatherDetails.icon} alt="bigIcon" className="bigIcon" />
                         </div>
                         <div className="mainChart">
                             <LineChart data={hourly} selected={selected} />
