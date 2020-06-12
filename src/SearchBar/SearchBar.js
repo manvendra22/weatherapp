@@ -20,22 +20,20 @@ function SearchBar(props) {
                 <img src={search} alt="dayIcon" className="inputIcon" />
             </div>
             <div className="cityContainer">
-                <div className="cityDataWraper">
-                    {isLoading ?
-                        <Loader /> :
-                        cityData.map(data =>
-                            <div className="cityData" onClick={handleCityClick}>
-                                <div className="">{`${data.name}, ${data.sys.country}`}</div>
-                                <div className="cityWeather">
-                                    <div className="mr-10">
-                                        <div className="boldText">{Math.round(data.main.temp)}&deg; C</div>
-                                        <div className="smallText grayText">{getWeather(data.weather[0].id).label}</div>
-                                    </div>
-                                    <img src={getWeather(data.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
+                {isLoading ?
+                    <Loader /> :
+                    cityData.map((data, index) =>
+                        <div className="cityData" onClick={() => handleCityClick(index)} key={data.id}>
+                            <div className="">{`${data.name}, ${data.sys.country}`}</div>
+                            <div className="cityWeather">
+                                <div className="mr-10">
+                                    <div className="boldText">{Math.round(data.main.temp)}&deg; C</div>
+                                    <div className="smallText grayText">{getWeather(data.weather[0].id).label}</div>
                                 </div>
+                                <img src={getWeather(data.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
                             </div>
-                        )}
-                </div>
+                        </div>
+                    )}
             </div>
         </div>
     );

@@ -36,37 +36,29 @@ function App() {
     setCitiesIdData(requiredIndiaData)
   }
 
+  const delayedQuery = useCallback(_.debounce((ids, name) => fetchCityData(ids, name), 1000), []);
+
   function setCityValue(value) {
     setCity(value)
-    setIsCityLoading(true)
 
     if (value.length) {
+      setIsCityLoading(true)
       const filterIds = citiesIDData.filter(data => data.name.includes(value.toLowerCase()))
-      const fistFiveIds = filterIds.slice(0, 4)
+      const fistFiveIds = filterIds.slice(0, 5)
       const requiredData = fistFiveIds.map(data => {
         return data.id
       })
       const filterString = requiredData.join(',')
-      getCityWeather(filterString, value)
+
+      delayedQuery(filterString, value)
     } else {
       setCityData([])
-      setIsCityLoading(false)
     }
   }
 
-  const delayedQuery = useCallback(_.debounce((ids, name) => fetchCityData(ids, name), 300), []);
-
-  function getCityWeather(cityIds, cityName) {
-    if (cityIds.length) {
-      delayedQuery(cityIds, false)
-    } else {
-      delayedQuery(false, cityName)
-    }
-  }
-
-  function handleCityClick() {
-    fetchLocationData(cityData?.coord?.lat, cityData?.coord?.lon)
-    setCity(`${cityData?.name}, ${cityData?.sys?.country}`)
+  function handleCityClick(index) {
+    fetchLocationData(cityData[index]?.coord?.lat, cityData[index]?.coord?.lon)
+    setCity(`${cityData[index]?.name}, ${cityData[index]?.sys?.country}`)
     setCityData([])
   }
 
@@ -120,12 +112,12 @@ function App() {
     const data = await response.json()
 
     setWeatherData(data)
-    // setIsLoading(false)
+    setIsLoading(false)
   }
 
   async function fetchCityData(cityIds, cityName) {
     let query = `group?id=${cityIds}`
-    if (cityName) {
+    if (!cityIds.length) {
       query = `weather?q=${cityName}`
     }
 
@@ -136,9 +128,10 @@ function App() {
 
     if (data?.list) {
       finalData = data?.list
-    } else if (data?.cod === "200") {
+    } else if (data?.cod === 200) {
       finalData.push(data)
     }
+
     setCityData(finalData)
     setIsCityLoading(false)
   }
