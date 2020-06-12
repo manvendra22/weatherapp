@@ -7,30 +7,66 @@ import Days from './Days/Days'
 import SearchBar from './SearchBar/SearchBar'
 import WeatherCard from './WeatherCard/WeatherCard'
 
+import cityJsonData from './utility/city.list.json'
+
 function App() {
-  const [data, setData] = useState({})
-  const [cityData, setCityData] = useState({})
+  const [weatherData, setWeatherData] = useState({})
+  const [cityData, setCityData] = useState([])
   const [ipData, setIpData] = useState({})
+  const [citiesIDData, setCitiesIdData] = useState([])
 
   const [city, setCity] = useState('')
   const [selected, setSelected] = useState(0)
-  const [isLoading, setisLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isCityLoading, setIsCityLoading] = useState(false)
 
   useEffect(function () {
     getLocation()
+    getCitiesJSON()
   }, [])
 
-  const delayedQuery = useCallback(_.debounce(q => fetchCityData(q), 500), []);
+  function getCitiesJSON() {
+    const indiaData = cityJsonData.filter(data => data.country === 'IN')
+    const requiredIndiaData = indiaData.map(data => {
+      return {
+        id: data.id,
+        name: data.name.toLowerCase()
+      }
+    })
+    setCitiesIdData(requiredIndiaData)
+  }
 
   function setCityValue(value) {
     setCity(value)
-    delayedQuery(value)
+    setIsCityLoading(true)
+
+    if (value.length) {
+      const filterIds = citiesIDData.filter(data => data.name.includes(value.toLowerCase()))
+      const fistFiveIds = filterIds.slice(0, 4)
+      const requiredData = fistFiveIds.map(data => {
+        return data.id
+      })
+      const filterString = requiredData.join(',')
+      getCityWeather(filterString, value)
+    } else {
+      setIsCityLoading(false)
+    }
+  }
+
+  const delayedQuery = useCallback(_.debounce((ids, name) => fetchCityData(ids, name), 300), []);
+
+  function getCityWeather(cityIds, cityName) {
+    if (cityIds.length) {
+      delayedQuery(cityIds, false)
+    } else {
+      delayedQuery(false, cityName)
+    }
   }
 
   function handleCityClick() {
     fetchLocationData(cityData?.coord?.lat, cityData?.coord?.lon)
     setCity(`${cityData?.name}, ${cityData?.sys?.country}`)
-    setCityData({})
+    setCityData([])
   }
 
   function setCurrentLocation() {
@@ -78,26 +114,39 @@ function App() {
   }
 
   async function fetchLocationData(latitude, longitude) {
-    setisLoading(true)
+    setIsLoading(true)
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
     const data = await response.json()
 
-    setData(data)
-    setisLoading(false)
+    setWeatherData(data)
+    setIsLoading(false)
   }
 
-  async function fetchCityData(cityName) {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+  async function fetchCityData(cityIds, cityName) {
+    let query = `group?id=${cityIds}`
+    if (cityName) {
+      query = `weather?q=${cityName}`
+    }
+
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/${query}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
     const data = await response.json()
 
-    setCityData(data)
+    let finalData = []
+
+    if (data?.list) {
+      finalData = data?.list
+    } else if (data?.cod === "200") {
+      finalData.push(data)
+    }
+    setCityData(finalData)
+    setIsCityLoading(false)
   }
 
   return (
     <div className="app">
-      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={setCurrentLocation} />
-      <Days data={data.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
-      <WeatherCard data={data} selected={selected} isLoading={isLoading} />
+      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={setCurrentLocation} isLoading={isCityLoading} />
+      <Days data={weatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
+      <WeatherCard data={weatherData} selected={selected} isLoading={isLoading} />
     </div>
   );
 }

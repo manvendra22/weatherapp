@@ -36,14 +36,17 @@
     margin-top: 1px;
 }
 
+.cityDataWraper {
+    box-shadow: 0px 0px 12px -6px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+}
+
 .cityData {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
     height: 35px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 12px -6px rgba(0, 0, 0, 0.75);
 }
 
 .cityWeather {
