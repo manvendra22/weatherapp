@@ -1,11 +1,11 @@
-/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import moment from 'moment';
 import suncalc from 'suncalc'
-
 import {
     AreaChart, Area, XAxis, YAxis, ResponsiveContainer
 } from 'recharts';
+
+import sun from '../icons/sun_dot.svg'
 
 function CustomizedAxisTick(props) {
     const {
@@ -21,10 +21,22 @@ function CustomizedAxisTick(props) {
     );
 }
 
-export default function MainChart(props) {
-    const { data = [], lat, lon, selected, sunrise, sunset } = props
+function CustomizedDot(props) {
+    const {
+        cx, cy, payload
+    } = props;
 
-    const chartData = data.map(element => {
+    const currentTime = moment().format('ha')
+
+    return (
+        payload.time === currentTime && <image x={cx} y={cy-20} width={30} height={30} xlinkHref={sun} alt="dotIcon" />
+    );
+}
+
+export default function MainChart(props) {
+    const { data = [], lat, lon, sunrise, sunset} = props
+
+    const chartData = data.slice(0, 24).map(element => {
         let time = moment.unix(element.dt)
         let position = suncalc.getPosition(time, lat, lon)
 
@@ -35,24 +47,26 @@ export default function MainChart(props) {
         }
     });
 
-    const firstChartData = chartData.slice(0, 24)
-    const secondChartData = chartData.slice(24, 48)
+    const sunriseTime = moment.unix(sunrise).format('HH')
+    const sunsetTime = moment.unix(sunset).format('HH')
 
-    const mainChartData = selected % 2 === 0 ? firstChartData : secondChartData
+    const filteredData = chartData.filter(element => element.actualTime >= (Number(sunriseTime)-2) && element.actualTime <= (Number(sunsetTime)+2))
+    let length = filteredData.length
+    let mid = Math.round(length/2)
 
-    const ticksData = [mainChartData[0].time, mainChartData[12].time, mainChartData[23].time]
-
-    console.log({ mainChartData }, sunrise, sunset)
+    const ticksData = [filteredData[0].time, filteredData[mid].time, filteredData[length - 1].time]
 
     return (
         <ResponsiveContainer width='100%' height={150}>
             <AreaChart
-                data={mainChartData}
-                margin={{ top: 5, left: 20, right: 20, bottom: 5 }}
+                data = {
+                    filteredData
+                }
+                margin={{ top: 10, left: 20, right: 20, bottom: 20 }}
             >
                 <XAxis dataKey="time" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={15} axisLine={false} />
                 <YAxis hide={true} />
-                <Area type="basis" dataKey="altitude" dot={false} stroke="#FBE2AC" fill="#FBE2AC" fillOpacity={0.8} />
+                <Area type="basis" dataKey="altitude" stroke="#FBE2AC" fill="#FBE2AC" fillOpacity={0.8} dot={<CustomizedDot />} />
             </AreaChart>
         </ResponsiveContainer>
     );
