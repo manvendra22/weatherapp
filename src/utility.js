@@ -4,7 +4,7 @@ import cloudy from './icons/cloudy.svg'
 import drizzle from './icons/drizzle.svg'
 import thunderstorm from './icons/thunderstorm.svg'
 
-export function getIcon(id) {
+export function getWeather(id) {
     // '800': sun,
     // '50x': rain,
     // '80x': cloudy,
@@ -13,17 +13,32 @@ export function getIcon(id) {
 
     switch (id) {
         case 800:
-            return sun;
+            return {
+                icon: sun,
+                label: 'Sunny'
+            };
         case 801:
         case 802:
         case 803:
         case 804:
-            return cloudy;
+            return {
+                icon: cloudy,
+                label: 'Cloudy'
+            };
         case String(id).includes('30'):
-            return drizzle;
+            return {
+                icon: drizzle,
+                label: 'Light rain'
+            };
         case String(id).includes('20'):
-            return thunderstorm;
+            return {
+                icon: thunderstorm,
+                label: 'Heavy rain'
+            };
         default:
-            return rain;
+            return {
+                icon: rain,
+                label: 'Rain'
+            };
     }
 }
