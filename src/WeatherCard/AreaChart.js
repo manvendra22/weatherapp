@@ -30,7 +30,7 @@ function CustomizedDot(props) {
     const currentTime = moment().format('ha')
 
     return (
-        payload.time === currentTime && <image x={cx} y={cy - 20} width={30} height={30} xlinkHref={sun} alt="dotIcon" />
+        payload.time === currentTime && <image x={cx - 20} y={cy - 20} width={30} height={30} xlinkHref={sun} alt="dotIcon" />
     );
 }
 
@@ -75,7 +75,7 @@ export default function MainChart(props) {
                 data={
                     filteredDayData
                 }
-                margin={{ top: 10, left: 20, right: 20, bottom: 20 }}
+                margin={{ top: 15, left: 20, right: 20, bottom: 10 }}
             >
                 <XAxis dataKey="time" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={15} axisLine={false} />
                 <YAxis hide={true} />

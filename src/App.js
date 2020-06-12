@@ -44,8 +44,8 @@ function App() {
     if (value.length) {
       setIsCityLoading(true)
       const filterIds = citiesIDData.filter(data => data.name.includes(value.toLowerCase()))
-      const fistFiveIds = filterIds.slice(0, 5)
-      const requiredData = fistFiveIds.map(data => {
+      const fistFourIds = filterIds.slice(0, 4)
+      const requiredData = fistFourIds.map(data => {
         return data.id
       })
       const filterString = requiredData.join(',')
@@ -78,7 +78,7 @@ function App() {
           ipLookUp(true)
           console.error('An error has occured while retrieving location', error)
         },
-        { timeout: 2000 }
+        { timeout: 1000 }
       )
     } else {
       // geolocation is not supported, using ipLookUp to get location by passing flag true
