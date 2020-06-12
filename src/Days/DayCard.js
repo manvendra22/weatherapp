@@ -15,9 +15,9 @@ function DayCard(props) {
 
     return (
         <div className={`dayCard ${active ? 'dayActive' : ''}`} onClick={onClick}>
-            <div className="mb-2">{day}</div>
-            <div className="mb-4"><span>{Math.round(max)}&deg;</span> <span className="grayText">{Math.round(min)}&deg;</span></div>
-            <div className="mb-4">
+            <div className="mb-3">{day}</div>
+            <div className="mb-5"><span>{Math.round(max)}&deg;</span> <span className="grayText">{Math.round(min)}&deg;</span></div>
+            <div className="mb-5">
                 <img src={getIcon(id)} alt="dayIcon" className="smallIcon" />
             </div>
             <div className="smallText grayText">{main}</div>
