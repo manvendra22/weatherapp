@@ -43,7 +43,7 @@ export default function MainChart(props) {
             <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
             <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick chartData={mainChartData} />} axisLine={false} />
             <YAxis domain={['dataMin', 'auto']} hide={true} />
-            <Line type="basis" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 4 }} />
+            <Line type="natural" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 5 }} />
         </LineChart>
     );
 }

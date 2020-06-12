@@ -10,6 +10,7 @@ import WeatherCard from './WeatherCard/WeatherCard'
 function App() {
   const [data, setData] = useState({})
   const [cityData, setCityData] = useState({})
+  const [ipData, setIpData] = useState({})
 
   const [city, setCity] = useState('')
   const [selected, setSelected] = useState(0)
@@ -48,7 +49,7 @@ function App() {
           ipLookUp(true)
           console.error('An error has occured while retrieving location', error)
         },
-        { timeout: 5000 }
+        { timeout: 2000 }
       )
     } else {
       // geolocation is not supported, using ipLookUp to get location by passing flag true
@@ -56,33 +57,40 @@ function App() {
     }
   }
 
-  function ipLookUp(flag) {
-    fetch('https://ipapi.co/json')
-      .then(response => response.json())
-      .then(data => {
-        if (flag) {
-          fetchLocationData(data.latitude, data.latitude)
-        }
-        setCity(`${data.city}, ${data.country_code}`)
-      });
+  async function ipLookUp(flag) {
+    let ip = {}
+
+    if (Object.keys(ipData).length === 0) {
+      const response = await fetch('https://ipapi.co/json');
+      const data = await response.json();
+
+      ip = data
+      setIpData(data)
+    } else {
+      ip = ipData
+    }
+
+    if (flag) {
+      fetchLocationData(ip.latitude, ip.latitude)
+    } else {
+      setCity(`${ip.city}, ${ip.country_code}`)
+    }
   }
 
-  function fetchLocationData(latitude, longitude) {
+  async function fetchLocationData(latitude, longitude) {
     setisLoading(true)
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        setData(data)
-        setisLoading(false)
-      });
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
+    const data = await response.json()
+
+    setData(data)
+    setisLoading(false)
   }
 
-  function fetchCityData(cityName) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        setCityData(data)
-      });
+  async function fetchCityData(cityName) {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+    const data = await response.json()
+
+    setCityData(data)
   }
 
   return (
