@@ -112,7 +112,7 @@ function App() {
     const data = await response.json()
 
     setWeatherData(data)
-    setIsLoading(false)
+    // setIsLoading(false)
   }
 
   async function fetchCityData(cityIds, cityName) {
