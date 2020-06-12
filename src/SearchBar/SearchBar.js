@@ -4,11 +4,11 @@ import './SearchBar.css';
 import pin from '../icons/pin.svg'
 import search from '../icons/search.svg'
 
-import { getWeather } from '../utility'
+import { getWeather } from '../utility/utility'
 
 function SearchBar(props) {
-    const { value, setValue, cityData, handleCityClick, setCurrentLocation } = props
-    const weatherDetails = getWeather(cityData?.weather?.[0]?.id)
+    const { value, setValue, cityData, handleCityClick, setCurrentLocation, isLoading } = props
+    console.log({ cityData })
 
     return (
         <div className="search">
@@ -17,19 +17,22 @@ function SearchBar(props) {
                 <input type="text" className="searchbar" value={value} onChange={e => setValue(e.target.value)} />
                 <img src={search} alt="dayIcon" className="inputIcon" />
             </div>
-            {cityData?.cod === 200 ?
-                <div className="cityContainer">
-                    <div className="cityData" onClick={handleCityClick}>
-                        <div className="">{`${cityData.name}, ${cityData.sys.country}`}</div>
-                        <div className="cityWeather">
-                            <div className="mr-10">
-                                <div className="boldText">{Math.round(cityData.main.temp)}&deg; C</div>
-                                <div className="smallText grayText">{weatherDetails.label}</div>
+            <div className="cityContainer">
+                <div className="cityDataWraper">
+                    {cityData.map(data =>
+                        <div className="cityData" onClick={handleCityClick}>
+                            <div className="">{`${data.name}, ${data.sys.country}`}</div>
+                            <div className="cityWeather">
+                                <div className="mr-10">
+                                    <div className="boldText">{Math.round(data.main.temp)}&deg; C</div>
+                                    <div className="smallText grayText">{getWeather(data.weather[0].id).label}</div>
+                                </div>
+                                <img src={getWeather(data.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
                             </div>
-                            <img src={weatherDetails.icon} alt="dayIcon" className="smallIcon" />
                         </div>
-                    </div>
-                </div> : null}
+                    )}
+                </div>
+            </div>
         </div>
     );
 }

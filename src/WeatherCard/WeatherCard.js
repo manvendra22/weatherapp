@@ -6,7 +6,7 @@ import LineChart from './LineChart'
 import AreaChart from './AreaChart'
 import Loader from './Loader'
 
-import { getWeather } from '../utility'
+import { getWeather } from '../utility/utility'
 
 function WeatherCard(props) {
     const { data, selected, isLoading } = props
