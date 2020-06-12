@@ -41,12 +41,15 @@ function App() {
     if ("geolocation" in navigator) {
       // check if geolocation is supported/enabled on current browser
       navigator.geolocation.getCurrentPosition(
-        function success(position) {
+        function (position) {
           fetchLocationData(position.coords.latitude, position.coords.longitude)
         },
-        function fail(error) {
+        function (error) {
+          ipLookUp(true)
           console.error('An error has occured while retrieving location', error)
-        })
+        },
+        { timeout: 5000 }
+      )
     } else {
       // geolocation is not supported, using ipLookUp to get location by passing flag true
       ipLookUp(true)
@@ -58,7 +61,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (flag) {
-          fetchLocationData(data.lat, data.lon)
+          fetchLocationData(data.latitude, data.latitude)
         }
         setCity(`${data.city}, ${data.country_code}`)
       });

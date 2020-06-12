@@ -12,7 +12,7 @@
 
 .bigText {
   font-size: 50px;
-  font-weight: 900;
+  font-family: 'HomepageBaukastenBold';
 }
 
 .smallText {
@@ -20,7 +20,7 @@
 }
 
 .boldText {
-  font-weight: 500;
+  font-family: 'HomepageBaukastenBold';
 }
 
 .grayText {
