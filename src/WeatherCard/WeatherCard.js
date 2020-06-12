@@ -10,7 +10,7 @@ import { getWeather } from '../utility/utility'
 
 function WeatherCard(props) {
     const { data, selected, isLoading } = props
-    const { daily = [], hourly = [] } = data
+    const { daily = [], hourly = [], lat, lon } = data
     const current = daily[selected]
     const { pressure, humidity, sunrise, sunset } = current || {}
 
@@ -57,9 +57,9 @@ function WeatherCard(props) {
                                 <div className="grayText">{sunsetTime}</div>
                             </div>
                         </div>
-                        {/* <div className="subChart">
-                            <AreaChart data={hourly} selected={selected} sunrise={sunrise} sunset={sunset} />
-                        </div> */}
+                        <div className="subChart">
+                            <AreaChart lat={lat} lon={lon} data={hourly} selected={selected} sunrise={sunrise} sunset={sunset} />
+                        </div>
                     </>
             }
         </div>
