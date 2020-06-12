@@ -6,13 +6,13 @@ const Loader = () => (
         width={'100%'}
         height={110}
     >
-        <rect x="10" y="0" rx="5" ry="5" width="70" height="110" />
-        <rect x="110" y="0" rx="5" ry="5" width="70" height="110" />
-        <rect x="210" y="0" rx="5" ry="5" width="70" height="110" />
-        <rect x="310" y="0" rx="5" ry="5" width="70" height="110" />
-        <rect x="410" y="0" rx="5" ry="5" width="70" height="110" />
-        <rect x="510" y="0" rx="5" ry="5" width="70" height="110" />
-        <rect x="610" y="0" rx="5" ry="5" width="70" height="110" />
+        <rect x="20" y="0" rx="5" ry="5" width="70" height="110" />
+        <rect x="120" y="0" rx="5" ry="5" width="70" height="110" />
+        <rect x="220" y="0" rx="5" ry="5" width="70" height="110" />
+        <rect x="320" y="0" rx="5" ry="5" width="70" height="110" />
+        <rect x="420" y="0" rx="5" ry="5" width="70" height="110" />
+        <rect x="520" y="0" rx="5" ry="5" width="70" height="110" />
+        <rect x="620" y="0" rx="5" ry="5" width="70" height="110" />
     </ContentLoader>
 )
 

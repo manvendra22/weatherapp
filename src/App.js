@@ -49,6 +49,7 @@ function App() {
       const filterString = requiredData.join(',')
       getCityWeather(filterString, value)
     } else {
+      setCityData([])
       setIsCityLoading(false)
     }
   }
@@ -119,7 +120,7 @@ function App() {
     const data = await response.json()
 
     setWeatherData(data)
-    setIsLoading(false)
+    // setIsLoading(false)
   }
 
   async function fetchCityData(cityIds, cityName) {

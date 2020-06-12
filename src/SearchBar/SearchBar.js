@@ -1,4 +1,7 @@
 import React from 'react';
+
+import Loader from './Loader'
+
 import './SearchBar.css';
 
 import pin from '../icons/pin.svg'
@@ -8,7 +11,6 @@ import { getWeather } from '../utility/utility'
 
 function SearchBar(props) {
     const { value, setValue, cityData, handleCityClick, setCurrentLocation, isLoading } = props
-    console.log({ cityData })
 
     return (
         <div className="search">
@@ -19,18 +21,20 @@ function SearchBar(props) {
             </div>
             <div className="cityContainer">
                 <div className="cityDataWraper">
-                    {cityData.map(data =>
-                        <div className="cityData" onClick={handleCityClick}>
-                            <div className="">{`${data.name}, ${data.sys.country}`}</div>
-                            <div className="cityWeather">
-                                <div className="mr-10">
-                                    <div className="boldText">{Math.round(data.main.temp)}&deg; C</div>
-                                    <div className="smallText grayText">{getWeather(data.weather[0].id).label}</div>
+                    {isLoading ?
+                        <Loader /> :
+                        cityData.map(data =>
+                            <div className="cityData" onClick={handleCityClick}>
+                                <div className="">{`${data.name}, ${data.sys.country}`}</div>
+                                <div className="cityWeather">
+                                    <div className="mr-10">
+                                        <div className="boldText">{Math.round(data.main.temp)}&deg; C</div>
+                                        <div className="smallText grayText">{getWeather(data.weather[0].id).label}</div>
+                                    </div>
+                                    <img src={getWeather(data.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
                                 </div>
-                                <img src={getWeather(data.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
                             </div>
-                        </div>
-                    )}
+                        )}
                 </div>
             </div>
         </div>
