@@ -19,7 +19,7 @@ function CustomizedAxisTick(props) {
     );
 }
 
-export default function MainChart(props) {
+export default function WeatherChart(props) {
     const { data = [], selected } = props
 
     const chartData = data.map(value => {
