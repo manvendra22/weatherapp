@@ -1,5 +1,6 @@
 import React from 'react';
-import moment from 'moment';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 import suncalc from 'suncalc'
 import {
     AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine
@@ -7,6 +8,8 @@ import {
 
 import sun from '../icons/sun_dot.svg'
 // import moon from '../icons/moon.svg'
+
+const moment = extendMoment(Moment);
 
 function CustomizedAxisTick(props) {
     const {
@@ -35,61 +38,57 @@ function CustomizedDot(props) {
 }
 
 export default function SunChart(props) {
-    const { lat, lon, sunrise, sunset } = props
+    const { data } = props
+    const { daily = [], lat, lon } = data
+    const { sunrise, sunset } = daily[0]
+    const { sunrise: sunriseNextDay } = daily[1]
 
-    const Totalhours = [...Array(24).keys()]
-
-    const ChartData = Totalhours.map(hour => {
-        let dateTime = moment(hour, ["HH"])
-        let labelTime = moment(dateTime).format("ha")
-
-        let sunPosition = suncalc.getPosition(dateTime, lat, lon)
-        let moonPosition = suncalc.getMoonPosition(dateTime, lat, lon)
-
-        return {
-            dateTime,
-            labelTime,
-            sunPosition: sunPosition.altitude,
-            moonPosition: moonPosition.altitude
-        }
-    })
-
-    const sunriseTime = moment.unix(sunrise).format('HH')
-    const sunsetTime = moment.unix(sunset).format('HH')
-
-    let dayOrNight = 'DAY'
-    let startValue = Number(sunriseTime) - 2
-    let endValue = Number(sunsetTime) + 2
-
-    if (!moment().isBetween(moment.unix(sunrise), moment.unix(sunset))) {
-        dayOrNight = 'NIGHT'
-        startValue = Number(sunsetTime) - 2
-        endValue = Number(sunriseTime) + 2
-    }
-
-    let mainChartData = ChartData.filter(data => moment().isBetween(moment.unix(startValue), moment.unix(endValue)))
-
-    console.log({ ChartData })
-
-    let begin = Number(sunriseTime) - 2
-    let end = Number(sunsetTime) + 2
-
+    const sunriseTime = moment.unix(sunrise)
+    const sunsetTime = moment.unix(sunset)
+    
+    let dayOrNight = ''
     let chartData = []
-    for (let i = begin; i <= end; i++) {
-        let timeDate = moment(i, ["HH"])
-        let time = moment(timeDate).format("ha")
-        let position = suncalc.getPosition(timeDate, lat, lon)
 
-        chartData.push({
-            time,
-            altitude: position.altitude,
+    if (moment().isBetween(sunriseTime, sunsetTime)) {
+        dayOrNight = 'DAY'
+
+        const sunriseTime = moment.unix(sunrise)
+        const sunsetTime = moment.unix(sunset)
+
+        const sunRange = moment.range(sunriseTime.subtract(2, 'h'), sunsetTime.add(2, 'h'));
+        const sunRangeHours = Array.from(sunRange.by('hour'));
+
+        chartData = sunRangeHours.map(hour => {
+            let sunPosition = suncalc.getPosition(hour, lat, lon)
+            return {
+                hour,
+                hourLabel: moment(hour).format("ha"),
+                altitude: sunPosition.altitude,
+            }
+        })
+    } else {
+        dayOrNight = 'NIGHT'
+
+        const sunsetTime = moment.unix(sunset)
+        const sunriseNextDayTime = moment.unix(sunriseNextDay)
+
+        const moonRange = moment.range(sunsetTime.subtract(2, 'h'), sunriseNextDayTime.add(2, 'h'));
+        const moonRangeHours = Array.from(moonRange.by('hour'));
+
+        chartData = moonRangeHours.map(hour => {
+            let moonPosition = suncalc.getMoonPosition(hour, lat, lon)
+            return {
+                hour,
+                hourLabel: moment(hour).format("ha"),
+                altitude: moonPosition.altitude,
+            }
         })
     }
 
     let length = chartData.length
     let mid = Math.round(length / 2)
 
-    const ticksData = [chartData[0].time, chartData[mid].time, chartData[length - 1].time]
+    const ticksData = [chartData[0].hourLabel, chartData[mid].hourLabel, chartData[length - 1].hourLabel]
 
     const gradientOffset = () => {
         const dataMax = Math.max(...chartData.map((i) => i.altitude));
@@ -108,7 +107,21 @@ export default function SunChart(props) {
 
     const off = gradientOffset();
 
+    const sunriseTimeLabel = moment.unix(sunrise).format('h:mma')
+    const sunsetTimeLabel = moment.unix(sunset).format('h:mma')
+
     return (
+        <>
+        <div className="areaChartRow">
+            <div>
+                <div className="boldText mb-2">Sunrise</div>
+                    <div className="grayText">{sunriseTimeLabel}</div>
+            </div>
+            <div>
+                <div className="boldText mb-2">Sunset</div>
+                    <div className="grayText">{sunsetTimeLabel}</div>
+            </div>
+        </div>
         <ResponsiveContainer width='100%' height={160}>
             <AreaChart
                 data={
@@ -116,7 +129,7 @@ export default function SunChart(props) {
                 }
                 margin={{ top: 15, left: 20, right: 20, bottom: 10 }}
             >
-                <XAxis dataKey="time" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
+                <XAxis dataKey="hourLabel" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
                 <YAxis hide={true} />
                 <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
                 <defs>
@@ -128,5 +141,6 @@ export default function SunChart(props) {
                 <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot />} isAnimationActive={false} />
             </AreaChart>
         </ResponsiveContainer>
+        </>
     );
 }
