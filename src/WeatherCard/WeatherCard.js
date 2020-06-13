@@ -58,7 +58,7 @@ function WeatherCard(props) {
                             </div>
                         </div>
                         <div className="subChart">
-                            <AreaChart lat={lat} lon={lon} data={hourly} selected={selected} sunrise={sunrise} sunset={sunset} />
+                            <AreaChart lat={lat} lon={lon} selected={selected} sunrise={sunrise} sunset={sunset} />
                         </div>
                     </>
             }
