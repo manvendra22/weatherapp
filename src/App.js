@@ -131,7 +131,6 @@ function App() {
 
     let finalData = []
 
-    console.log("isInputEmpty.current", isInputEmpty.current)
     if (!isInputEmpty.current) {
       if (data?.list) {
         finalData = data?.list

@@ -30,8 +30,6 @@ function CustomizedDot(props) {
         cx, cy, payload, dayOrNight
     } = props;
 
-    console.log("dayOrNight", dayOrNight)
-
     const currentTime = moment().format('ha')
 
     return (
