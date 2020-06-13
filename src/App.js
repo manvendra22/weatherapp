@@ -64,6 +64,7 @@ function App() {
     fetchLocationData(cityData[index]?.coord?.lat, cityData[index]?.coord?.lon)
     setCity(`${cityData[index]?.name}, ${cityData[index]?.sys?.country}`)
     setCityData([])
+    setSelected(0)
   }
 
   function setCurrentLocation() {
