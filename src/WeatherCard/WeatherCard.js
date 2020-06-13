@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 
 import './WeatherCard.css'
-import LineChart from './LineChart'
-import AreaChart from './AreaChart'
+import WeatherChart from './WeatherChart'
+import SunChart from './SunChart'
 import Loader from './Loader'
 
 import { getWeather } from '../utility/utility'
@@ -35,7 +35,7 @@ function WeatherCard(props) {
                             <img src={weatherDetails.icon} alt="bigIcon" className="bigIcon" />
                         </div>
                         <div className="mainChart">
-                            <LineChart data={hourly} selected={selected} />
+                            <WeatherChart data={hourly} selected={selected} />
                         </div>
                         <div className="secondaryRow">
                             <div className="blueBox">
@@ -58,7 +58,7 @@ function WeatherCard(props) {
                             </div>
                         </div>
                         <div className="subChart">
-                            <AreaChart lat={lat} lon={lon} selected={selected} sunrise={sunrise} sunset={sunset} />
+                            <SunChart lat={lat} lon={lon} selected={selected} sunrise={sunrise} sunset={sunset} />
                         </div>
                     </>
             }

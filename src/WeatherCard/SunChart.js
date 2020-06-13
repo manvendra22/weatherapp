@@ -34,14 +34,48 @@ function CustomizedDot(props) {
     );
 }
 
-export default function MainChart(props) {
+export default function SunChart(props) {
     const { lat, lon, sunrise, sunset } = props
+
+    const Totalhours = [...Array(24).keys()]
+
+    const ChartData = Totalhours.map(hour => {
+        let dateTime = moment(hour, ["HH"])
+        let labelTime = moment(dateTime).format("ha")
+
+        let sunPosition = suncalc.getPosition(dateTime, lat, lon)
+        let moonPosition = suncalc.getMoonPosition(dateTime, lat, lon)
+
+        return {
+            dateTime,
+            labelTime,
+            sunPosition: sunPosition.altitude,
+            moonPosition: moonPosition.altitude
+        }
+    })
 
     const sunriseTime = moment.unix(sunrise).format('HH')
     const sunsetTime = moment.unix(sunset).format('HH')
 
+    let dayOrNight = 'DAY'
+    let startValue = Number(sunriseTime) - 2
+    let endValue = Number(sunsetTime) + 2
+
+    if (!moment().isBetween(moment.unix(sunrise), moment.unix(sunset))) {
+        dayOrNight = 'NIGHT'
+        startValue = Number(sunsetTime) - 2
+        endValue = Number(sunriseTime) + 2
+    }
+
+    let mainChartData = ChartData.filter(data => moment().isBetween(moment.unix(startValue), moment.unix(endValue)))
+
+    console.log({ ChartData })
+
+    let begin = Number(sunriseTime) - 2
+    let end = Number(sunsetTime) + 2
+
     let chartData = []
-    for(let i = (Number(sunriseTime)-2); i <= (Number(sunsetTime)+2); i++) {
+    for (let i = begin; i <= end; i++) {
         let timeDate = moment(i, ["HH"])
         let time = moment(timeDate).format("ha")
         let position = suncalc.getPosition(timeDate, lat, lon)
@@ -51,13 +85,6 @@ export default function MainChart(props) {
             altitude: position.altitude,
         })
     }
-
-    // let dayOrNight = ''
-    // if (moment().isBetween(moment.unix(sunrise), moment.unix(sunset))) {
-    //     dayOrNight = 'DAY'
-    // } else {
-    //     dayOrNight = 'NIGHT'
-    // }
 
     let length = chartData.length
     let mid = Math.round(length / 2)
@@ -95,10 +122,10 @@ export default function MainChart(props) {
                 <defs>
                     <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
                         <stop offset={off} stopColor="#FBE2AC" stopOpacity={0.8} />
-                        <stop offset={off} stopColor="#666667" stopOpacity={0.8}/>
+                        <stop offset={off} stopColor="#666667" stopOpacity={0.8} />
                     </linearGradient>
                 </defs>
-                <Area type="basis" dataKey="altitude" stroke={false} fill="url(#splitColor)" dot={<CustomizedDot />} isAnimationActive={false} />
+                <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot />} isAnimationActive={false} />
             </AreaChart>
         </ResponsiveContainer>
     );
