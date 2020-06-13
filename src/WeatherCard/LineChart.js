@@ -36,7 +36,7 @@ export default function MainChart(props) {
     return (
         <LineChart
             width={1300}
-            height={150}
+            height={160}
             margin={{ top: 10, left: 20, right: 20, bottom: 5 }}
             data={mainChartData}
         >

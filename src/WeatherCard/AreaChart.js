@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import suncalc from 'suncalc'
 import {
-    AreaChart, Area, XAxis, YAxis, ResponsiveContainer
+    AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine
 } from 'recharts';
 
 import sun from '../icons/sun_dot.svg'
@@ -70,15 +70,16 @@ export default function MainChart(props) {
     const ticksData = [filteredDayData[0].time, filteredDayData[mid].time, filteredDayData[length - 1].time]
 
     return (
-        <ResponsiveContainer width='100%' height={150}>
+        <ResponsiveContainer width='100%' height={160}>
             <AreaChart
                 data={
                     filteredDayData
                 }
                 margin={{ top: 15, left: 20, right: 20, bottom: 10 }}
             >
-                <XAxis dataKey="time" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={15} axisLine={false} />
+                <XAxis dataKey="time" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
                 <YAxis hide={true} />
+                <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
                 <Area type="basis" dataKey="altitude" stroke="#FBE2AC" fill="#FBE2AC" fillOpacity={0.8} dot={<CustomizedDot />} />
             </AreaChart>
         </ResponsiveContainer>
