@@ -41,7 +41,7 @@ export default function MainChart(props) {
     const sunsetTime = moment.unix(sunset).format('HH')
 
     let chartData = []
-    for(let i = (Number(sunriseTime)-2); i < (Number(sunsetTime)+2); i++) {
+    for(let i = (Number(sunriseTime)-2); i <= (Number(sunsetTime)+2); i++) {
         let timeDate = moment(i, ["HH"])
         let time = moment(timeDate).format("ha")
         let position = suncalc.getPosition(timeDate, lat, lon)
