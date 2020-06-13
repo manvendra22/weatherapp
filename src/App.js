@@ -7,8 +7,6 @@ import Days from './Days/Days'
 import SearchBar from './SearchBar/SearchBar'
 import WeatherCard from './WeatherCard/WeatherCard'
 
-// import cityJsonData from './utility/city.list.json'
-
 function App() {
   const [weatherData, setWeatherData] = useState({})
   const [cityData, setCityData] = useState([])
@@ -70,16 +68,13 @@ function App() {
     setSelected(0)
   }
 
-  function setCurrentLocation() {
-    getLocation()
-  }
-
   function getLocation() {
     if ("geolocation" in navigator) {
       // check if geolocation is supported/enabled on current browser
       navigator.geolocation.getCurrentPosition(
         function (position) {
           fetchLocationData(position.coords.latitude, position.coords.longitude)
+          fetchCityNameFromLoc(position.coords.latitude, position.coords.longitude)
         },
         function (error) {
           ipLookUp(true)
@@ -93,28 +88,7 @@ function App() {
     }
   }
 
-  async function ipLookUp(flag) {
-    let ip = {}
-
-    if (Object.keys(ipData).length === 0) {
-      const response = await fetch('https://ipapi.co/json');
-      const data = await response.json();
-
-      ip = data
-      setIpData(data)
-    } else {
-      ip = ipData
-    }
-
-    if (flag) {
-      fetchLocationData(ip.latitude, ip.latitude)
-    } else {
-      setCity(`${ip.city}, ${ip.country_code}`)
-    }
-  }
-
   async function fetchLocationData(latitude, longitude) {
-    ipLookUp(false)
     setIsLoading(true)
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
     const data = await response.json()
@@ -145,9 +119,30 @@ function App() {
     setIsCityLoading(false)
   }
 
+  async function fetchCityNameFromLoc(lat, lon) {
+    const response = await fetch(`https://geocode.xyz/${lat},${lon}?json=1`);
+    const data = await response.json();
+    setCity(`${data.city}, ${data.prov}`)
+  }
+
+  async function ipLookUp() {
+    let ip = {}
+
+    if (Object.keys(ipData).length === 0) {
+      const response = await fetch('https://ipapi.co/json');
+      const data = await response.json();
+      ip = data
+      setIpData(data)
+    } else {
+      ip = ipData
+    }
+    fetchLocationData(ip.latitude, ip.latitude)
+    setCity(`${ip.city}, ${ip.country_code}`)
+  }
+
   return (
     <div className="app">
-      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={setCurrentLocation} isLoading={isCityLoading} />
+      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
       <Days data={weatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
       <WeatherCard data={weatherData} selected={selected} isLoading={isLoading} />
     </div>
