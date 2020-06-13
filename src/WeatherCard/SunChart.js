@@ -7,7 +7,7 @@ import {
 } from 'recharts';
 
 import sun from '../icons/sun_dot.svg'
-// import moon from '../icons/moon.svg'
+import moon from '../icons/moon.svg'
 
 const moment = extendMoment(Moment);
 
@@ -27,13 +27,15 @@ function CustomizedAxisTick(props) {
 
 function CustomizedDot(props) {
     const {
-        cx, cy, payload
+        cx, cy, payload, dayOrNight
     } = props;
+
+    console.log("dayOrNight", dayOrNight)
 
     const currentTime = moment().format('ha')
 
     return (
-        payload.time === currentTime && <image x={cx - 20} y={cy - 20} width={30} height={30} xlinkHref={sun} alt="dotIcon" />
+        payload.hourLabel === currentTime && <image x={cx - 20} y={cy - 20} width={30} height={30} xlinkHref={dayOrNight === 'DAY' ? sun : moon} alt="dotIcon" />
     );
 }
 
@@ -138,7 +140,7 @@ export default function SunChart(props) {
                         <stop offset={off} stopColor="#666667" stopOpacity={0.8} />
                     </linearGradient>
                 </defs>
-                <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot />} isAnimationActive={false} />
+                    <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot dayOrNight={dayOrNight} />} isAnimationActive={false} />
             </AreaChart>
         </ResponsiveContainer>
         </>
