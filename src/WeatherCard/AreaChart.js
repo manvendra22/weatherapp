@@ -64,6 +64,23 @@ export default function MainChart(props) {
 
     const ticksData = [chartData[0].time, chartData[mid].time, chartData[length - 1].time]
 
+    const gradientOffset = () => {
+        const dataMax = Math.max(...chartData.map((i) => i.altitude));
+        const dataMin = Math.min(...chartData.map((i) => i.altitude));
+
+        if (dataMax <= 0) {
+            return 0
+        }
+        else if (dataMin >= 0) {
+            return 1
+        }
+        else {
+            return dataMax / (dataMax - dataMin);
+        }
+    }
+
+    const off = gradientOffset();
+
     return (
         <ResponsiveContainer width='100%' height={160}>
             <AreaChart
@@ -75,7 +92,13 @@ export default function MainChart(props) {
                 <XAxis dataKey="time" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
                 <YAxis hide={true} />
                 <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
-                <Area type="basis" dataKey="altitude" stroke="#FBE2AC" fill="#FBE2AC" fillOpacity={0.8} dot={<CustomizedDot />} isAnimationActive={false} />
+                <defs>
+                    <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset={off} stopColor="#FBE2AC" stopOpacity={1} />
+                        <stop offset={off} stopColor="#666667" stopOpacity={1} />
+                    </linearGradient>
+                </defs>
+                <Area type="basis" dataKey="altitude" stroke={false} fill="url(#splitColor)" fillOpacity={0.8} dot={<CustomizedDot />} isAnimationActive={false} />
             </AreaChart>
         </ResponsiveContainer>
     );
