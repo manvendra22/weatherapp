@@ -7,7 +7,7 @@ import Days from './Days/Days'
 import SearchBar from './SearchBar/SearchBar'
 import WeatherCard from './WeatherCard/WeatherCard'
 
-import cityJsonData from './utility/city.list.json'
+// import cityJsonData from './utility/city.list.json'
 
 function App() {
   const [weatherData, setWeatherData] = useState({})
@@ -24,11 +24,14 @@ function App() {
 
   useEffect(function () {
     getLocation()
-    getCitiesJSON()
+    fetchCityJSON()
   }, [])
 
-  function getCitiesJSON() {
-    const indiaData = cityJsonData.filter(data => data.country === 'IN')
+  async function fetchCityJSON() {
+    const response = await fetch(`${process.env.PUBLIC_URL}/city.list.json`)
+    const data = await response.json()
+
+    const indiaData = data.filter(data => data.country === 'IN')
     const requiredIndiaData = indiaData.map(data => {
       return {
         id: data.id,
