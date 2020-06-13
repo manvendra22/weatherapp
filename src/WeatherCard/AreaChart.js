@@ -35,25 +35,22 @@ function CustomizedDot(props) {
 }
 
 export default function MainChart(props) {
-    const { data = [], lat, lon, sunrise, sunset } = props
-
-    const chartData = data.slice(0, 24).map(element => {
-        let time = moment.unix(element.dt)
-        let position = suncalc.getPosition(time, lat, lon)
-        // let moonPosition = suncalc.getMoonPosition(time, lat, lon)
-
-        return {
-            time: time.format('ha'),
-            altitude: position.altitude,
-            // moonPosition: moonPosition.altitude,
-            actualTime: time.format('HH')
-        }
-    });
+    const { lat, lon, sunrise, sunset } = props
 
     const sunriseTime = moment.unix(sunrise).format('HH')
     const sunsetTime = moment.unix(sunset).format('HH')
-    const filteredDayData = chartData.filter(element => element.actualTime >= (Number(sunriseTime) - 2) && element.actualTime <= (Number(sunsetTime) + 2))
-    // const filteredNightData = chartData.filter(element => element.actualTime >= (Number(sunsetTime) - 2) || element.actualTime <= (Number(sunriseTime) + 2))
+
+    let chartData = []
+    for(let i = (Number(sunriseTime)-2); i < (Number(sunsetTime)+2); i++) {
+        let timeDate = moment(i, ["HH"])
+        let time = moment(timeDate).format("ha")
+        let position = suncalc.getPosition(timeDate, lat, lon)
+
+        chartData.push({
+            time,
+            altitude: position.altitude,
+        })
+    }
 
     // let dayOrNight = ''
     // if (moment().isBetween(moment.unix(sunrise), moment.unix(sunset))) {
@@ -62,18 +59,16 @@ export default function MainChart(props) {
     //     dayOrNight = 'NIGHT'
     // }
 
-    // const filteredData = dayOrNight === 'DAY' ? filteredDayData : filteredNightData
-
-    let length = filteredDayData.length
+    let length = chartData.length
     let mid = Math.round(length / 2)
 
-    const ticksData = [filteredDayData[0].time, filteredDayData[mid].time, filteredDayData[length - 1].time]
+    const ticksData = [chartData[0].time, chartData[mid].time, chartData[length - 1].time]
 
     return (
         <ResponsiveContainer width='100%' height={160}>
             <AreaChart
                 data={
-                    filteredDayData
+                    chartData
                 }
                 margin={{ top: 15, left: 20, right: 20, bottom: 10 }}
             >
