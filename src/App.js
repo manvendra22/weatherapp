@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import _ from "lodash";
 
 import './App.css';
@@ -19,6 +19,8 @@ function App() {
   const [selected, setSelected] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [isCityLoading, setIsCityLoading] = useState(false)
+
+  const isInputEmpty = useRef(true)
 
   useEffect(function () {
     getLocation()
@@ -43,6 +45,7 @@ function App() {
 
     if (value.length) {
       setIsCityLoading(true)
+      isInputEmpty.current = false
       const filterIds = citiesIDData.filter(data => data.name.includes(value.toLowerCase()))
       const fistFourIds = filterIds.slice(0, 4)
       const requiredData = fistFourIds.map(data => {
@@ -53,6 +56,7 @@ function App() {
       delayedQuery(filterString, value)
     } else {
       setCityData([])
+      isInputEmpty.current = true
     }
   }
 
@@ -126,13 +130,15 @@ function App() {
 
     let finalData = []
 
-    if (data?.list) {
-      finalData = data?.list
-    } else if (data?.cod === 200) {
-      finalData.push(data)
+    console.log("isInputEmpty.current", isInputEmpty.current)
+    if (!isInputEmpty.current) {
+      if (data?.list) {
+        finalData = data?.list
+      } else if (data?.cod === 200) {
+        finalData.push(data)
+      }
+      setCityData(finalData)
     }
-
-    setCityData(finalData)
     setIsCityLoading(false)
   }
 
