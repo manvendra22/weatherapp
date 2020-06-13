@@ -44,9 +44,7 @@ function WeatherCard(props) {
                                 <div>{humidity} %</div>
                             </div>
                         </div>
-                        <div className="subChart">
-                            <SunChart data={data}/>
-                        </div>
+                        <SunChart data={data} />
                     </>
             }
         </div>
