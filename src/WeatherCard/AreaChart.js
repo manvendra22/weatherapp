@@ -75,7 +75,7 @@ export default function MainChart(props) {
                 <XAxis dataKey="time" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
                 <YAxis hide={true} />
                 <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
-                <Area type="basis" dataKey="altitude" stroke="#FBE2AC" fill="#FBE2AC" fillOpacity={0.8} dot={<CustomizedDot />} />
+                <Area type="basis" dataKey="altitude" stroke="#FBE2AC" fill="#FBE2AC" fillOpacity={0.8} dot={<CustomizedDot />} isAnimationActive={false} />
             </AreaChart>
         </ResponsiveContainer>
     );
