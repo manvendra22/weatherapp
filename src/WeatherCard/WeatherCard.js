@@ -10,12 +10,9 @@ import { getWeather } from '../utility/utility'
 
 function WeatherCard(props) {
     const { data, selected, isLoading } = props
-    const { daily = [], hourly = [], lat, lon } = data
+    const { daily = [], hourly = [] } = data
     const current = daily[selected]
-    const { pressure, humidity, sunrise, sunset } = current || {}
-
-    const sunriseTime = moment.unix(sunrise).format('h:mma')
-    const sunsetTime = moment.unix(sunset).format('h:mma')
+    const { pressure, humidity } = current || {}
 
     const currentTime = moment().format('h')
     const currentData = hourly.find(value => currentTime === moment.unix(value.dt).format('h'))
@@ -47,18 +44,8 @@ function WeatherCard(props) {
                                 <div>{humidity} %</div>
                             </div>
                         </div>
-                        <div className="areaChartRow">
-                            <div>
-                                <div className="boldText mb-2">Sunrise</div>
-                                <div className="grayText">{sunriseTime}</div>
-                            </div>
-                            <div>
-                                <div className="boldText mb-2">Sunset</div>
-                                <div className="grayText">{sunsetTime}</div>
-                            </div>
-                        </div>
                         <div className="subChart">
-                            <SunChart lat={lat} lon={lon} selected={selected} sunrise={sunrise} sunset={sunset} />
+                            <SunChart data={data}/>
                         </div>
                     </>
             }

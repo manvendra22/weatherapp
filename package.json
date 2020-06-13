@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
+    "moment-range": "^4.0.2",
     "react": "^16.13.1",
     "react-content-loader": "^5.0.4",
     "react-dom": "^16.13.1",
