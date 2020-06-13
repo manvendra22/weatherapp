@@ -94,11 +94,11 @@ export default function MainChart(props) {
                 <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
                 <defs>
                     <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset={off} stopColor="#FBE2AC" stopOpacity={1} />
-                        <stop offset={off} stopColor="#666667" stopOpacity={1} />
+                        <stop offset={off} stopColor="#FBE2AC" stopOpacity={0.8} />
+                        <stop offset={off} stopColor="#666667" stopOpacity={0.8}/>
                     </linearGradient>
                 </defs>
-                <Area type="basis" dataKey="altitude" stroke={false} fill="url(#splitColor)" fillOpacity={0.8} dot={<CustomizedDot />} isAnimationActive={false} />
+                <Area type="basis" dataKey="altitude" stroke={false} fill="url(#splitColor)" dot={<CustomizedDot />} isAnimationActive={false} />
             </AreaChart>
         </ResponsiveContainer>
     );
