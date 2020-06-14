@@ -1,8 +1,16 @@
 # Weather Check
 
-## Live link
+### Live link
 
 https://weathercheck.vercel.app/
+
+![Screenshot](weather_check.png)
+
+### Tech stack:
+
+- React
+- CSS
+- Open weather map API
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
