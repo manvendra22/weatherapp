@@ -13,7 +13,7 @@ function Days(props) {
                 isLoading ?
                     <Loader /> :
                     data.map((dayData, index) =>
-                        <DayCard key={dayData.dt} data={dayData} active={index === selected} onClick={() => setSelected(index)} />
+                        <DayCard key={dayData.dt} data={dayData} active={index === selected} notClickable={index > 1} onClick={() => setSelected(index)} />
                     )
 
             }
