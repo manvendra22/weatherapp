@@ -2,7 +2,7 @@
 
 ### Live link
 
-https://weather-check-app.netlify.app/
+https://weatherchek.netlify.app/
 
 ![Screenshot](weather_check.png)
 
