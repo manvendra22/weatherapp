@@ -138,7 +138,7 @@ export default function SunChart(props) {
                             <stop offset={off} stopColor="#7475b6" stopOpacity={0.8} />
                         </linearGradient>
                     </defs>
-                    <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot dayOrNight={dayOrNight} />} isAnimationActive={false} />
+                    <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot dayOrNight={dayOrNight} />} isAnimationActive={true} />
                 </AreaChart>
             </ResponsiveContainer>
         </>
