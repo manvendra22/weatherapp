@@ -8,9 +8,8 @@ import SearchBar from './SearchBar/SearchBar'
 import WeatherCard from './WeatherCard/WeatherCard'
 
 function App() {
-  const [weatherData, setWeatherData] = useState({})
+  const [dailyWeatherData, setDailyWeatherData] = useState({})
   const [cityData, setCityData] = useState([])
-  const [cityWeatherData, setCityWeatherData] = useState([])
   const [ipData, setIpData] = useState({})
 
   const [city, setCity] = useState('')
@@ -40,14 +39,13 @@ function App() {
   }
 
   function handleCityClick(index) {
-    fetchLocationData(cityData[index]?.coord?.lat, cityData[index]?.coord?.lon)
-    setCity(`${cityData[index]?.name}, ${cityData[index]?.sys?.country}`)
+    let weatherData = cityData[index]?.weatherData
+    let cityName = `${cityData[index].address.city}, ${cityData[index].address.state}, ${cityData[index].address.country}`
+
+    fetchLocationData(weatherData?.coord?.lat, weatherData?.coord?.lon)
+    setCity(cityName)
     setCityData([])
     setSelected(0)
-  }
-
-  function handleCityData(cityData) {
-    setCityData(cityData)
   }
 
   function getLocation() {
@@ -75,31 +73,28 @@ function App() {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
     const data = await response.json()
 
-    setWeatherData(data)
+    setDailyWeatherData(data)
     setIsLoading(false)
   }
 
   async function fetchCityAutocompleteData(q) {
-    const url = `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=${process.env.REACT_APP_HERE_MAP_KEY}&query=${q}&beginHighlight=<b>&endHighlight=</b>&maxresults=4&country=IND&resultType=city`
+    const url = `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=${process.env.REACT_APP_HERE_MAP_KEY}&query=${q}&maxresults=4&country=IND&resultType=city`
     const response = await fetch(url);
     const data = await response.json();
-
-    if (!isInputEmpty.current) {
-      handleCityData(data.suggestions)
-      fetchCityWeather(data.suggestions)
-    }
-    setIsCityLoading(false)
+    fetchCityWeather(data.suggestions)
   }
 
   async function fetchCityWeather(cityData) {
-    let cityWeatherData = []
     for (let i = 0; i < cityData.length; i++) {
       const postalCode = cityData[i].address.postalCode
       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
       const data = await response.json()
-      cityWeatherData[i] = data
+      cityData[i].weatherData = data
     }
-    setCityWeatherData(cityWeatherData)
+    if (!isInputEmpty.current) {
+      setCityData(cityData)
+    }
+    setIsCityLoading(false)
   }
 
   async function fetchCityNameFromLoc(lat, lon) {
@@ -127,9 +122,9 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar value={city} setValue={setCityValue} cityData={cityData} cityWeatherData={cityWeatherData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
-      <Days data={weatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
-      <WeatherCard data={weatherData} selected={selected} isLoading={isLoading} />
+      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
+      <Days data={dailyWeatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
+      <WeatherCard data={dailyWeatherData} selected={selected} isLoading={isLoading} />
     </div>
   );
 }
