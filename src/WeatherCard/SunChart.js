@@ -134,7 +134,7 @@ export default function SunChart(props) {
                     <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
                     <defs>
                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset={off} stopColor="#c9ebff" stopOpacity={0.8} />
+                            <stop offset={off} stopColor="#c9ebff" stopOpacity={1} />
                             <stop offset={off} stopColor="#7475b6" stopOpacity={0.8} />
                         </linearGradient>
                     </defs>
