@@ -60,7 +60,7 @@ function App() {
           ipLookUp(true)
           console.error('An error has occured while retrieving location', error)
         },
-        { timeout: 2000 }
+        { timeout: 1000 }
       )
     } else {
       // geolocation is not supported, using ipLookUp to get location by passing flag true
@@ -101,7 +101,7 @@ function App() {
     const response = await fetch(`https://geocode.xyz/${lat},${lon}?json=1`);
     const data = await response.json();
     if (data.city) {
-      setCity(`${data.city}, ${data.prov}`)
+      setCity(`${data.city}, ${data.state}, ${data.country}`)
     }
   }
 
@@ -117,7 +117,7 @@ function App() {
       ip = ipData
     }
     fetchLocationData(ip.latitude, ip.latitude)
-    setCity(`${ip.city}, ${ip.country_code}`)
+    setCity(`${ip.city}, ${ip.region}, ${ip.country_name}`)
   }
 
   return (
