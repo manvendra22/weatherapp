@@ -10,8 +10,8 @@ import WeatherCard from './WeatherCard/WeatherCard'
 function App() {
   const [weatherData, setWeatherData] = useState({})
   const [cityData, setCityData] = useState([])
+  const [cityWeatherData, setCityWeatherData] = useState([])
   const [ipData, setIpData] = useState({})
-  const [citiesIDData, setCitiesIdData] = useState([])
 
   const [city, setCity] = useState('')
   const [selected, setSelected] = useState(0)
@@ -22,24 +22,9 @@ function App() {
 
   useEffect(function () {
     getLocation()
-    fetchCityJSON()
   }, [])
 
-  async function fetchCityJSON() {
-    const response = await fetch(`${process.env.PUBLIC_URL}/city.list.json`)
-    const data = await response.json()
-
-    const indiaData = data.filter(data => data.country === 'IN')
-    const requiredIndiaData = indiaData.map(data => {
-      return {
-        id: data.id,
-        name: data.name.toLowerCase()
-      }
-    })
-    setCitiesIdData(requiredIndiaData)
-  }
-
-  const delayedQuery = useCallback(_.debounce((ids, name) => fetchCityData(ids, name), 1000), []);
+  const delayedQuery = useCallback(_.debounce(value => fetchCityAutocompleteData(value), 1000), []);
 
   function setCityValue(value) {
     setCity(value)
@@ -47,14 +32,7 @@ function App() {
     if (value.length) {
       setIsCityLoading(true)
       isInputEmpty.current = false
-      const filterIds = citiesIDData.filter(data => data.name.includes(value.toLowerCase()))
-      const fistFourIds = filterIds.slice(0, 4)
-      const requiredData = fistFourIds.map(data => {
-        return data.id
-      })
-      const filterString = requiredData.join(',')
-
-      delayedQuery(filterString, value)
+      delayedQuery(value)
     } else {
       setCityData([])
       isInputEmpty.current = true
@@ -66,6 +44,10 @@ function App() {
     setCity(`${cityData[index]?.name}, ${cityData[index]?.sys?.country}`)
     setCityData([])
     setSelected(0)
+  }
+
+  function handleCityData(cityData) {
+    setCityData(cityData)
   }
 
   function getLocation() {
@@ -97,26 +79,27 @@ function App() {
     setIsLoading(false)
   }
 
-  async function fetchCityData(cityIds, cityName) {
-    let query = `group?id=${cityIds}`
-    if (!cityIds.length) {
-      query = `weather?q=${cityName}`
-    }
-
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/${query}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
-    const data = await response.json()
-
-    let finalData = []
+  async function fetchCityAutocompleteData(q) {
+    const url = `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=${process.env.REACT_APP_HERE_MAP_KEY}&query=${q}&beginHighlight=<b>&endHighlight=</b>&maxresults=4&country=IND&resultType=city`
+    const response = await fetch(url);
+    const data = await response.json();
 
     if (!isInputEmpty.current) {
-      if (data?.list) {
-        finalData = data?.list
-      } else if (data?.cod === 200) {
-        finalData.push(data)
-      }
-      setCityData(finalData)
+      handleCityData(data.suggestions)
+      fetchCityWeather(data.suggestions)
     }
     setIsCityLoading(false)
+  }
+
+  async function fetchCityWeather(cityData) {
+    let cityWeatherData = []
+    for (let i = 0; i < cityData.length; i++) {
+      const postalCode = cityData[i].address.postalCode
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+      const data = await response.json()
+      cityWeatherData[i] = data
+    }
+    setCityWeatherData(cityWeatherData)
   }
 
   async function fetchCityNameFromLoc(lat, lon) {
@@ -142,7 +125,7 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
+      <SearchBar value={city} setValue={setCityValue} cityData={cityData} cityWeatherData={cityWeatherData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
       <Days data={weatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
       <WeatherCard data={weatherData} selected={selected} isLoading={isLoading} />
     </div>
