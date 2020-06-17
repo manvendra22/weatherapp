@@ -47,10 +47,14 @@ export default function SunChart(props) {
     const sunsetTime = moment.unix(sunset)
 
     let dayOrNight = ''
+    let startLabel = ''
+    let endLabel = ''
     let chartData = []
 
     if (moment().isBetween(sunriseTime, sunsetTime)) {
         dayOrNight = 'DAY'
+        startLabel = 'Sunrise'
+        endLabel = 'Sunset'
 
         const sunriseTime = moment.unix(sunrise)
         const sunsetTime = moment.unix(sunset)
@@ -68,6 +72,8 @@ export default function SunChart(props) {
         })
     } else {
         dayOrNight = 'NIGHT'
+        startLabel = 'Sunset'
+        endLabel = 'Sunrise'
 
         const sunsetTime = moment.unix(sunset)
         const sunriseNextDayTime = moment.unix(sunriseNextDay)
@@ -107,19 +113,19 @@ export default function SunChart(props) {
 
     const off = gradientOffset();
 
-    const sunriseTimeLabel = moment.unix(sunrise).format('h:mma')
-    const sunsetTimeLabel = moment.unix(sunset).format('h:mma')
+    const startLabelTime = moment.unix(dayOrNight = 'DAY' ? sunrise : sunset).format('h:mma')
+    const endLabelTime = moment.unix(dayOrNight = 'DAY' ? sunset : sunset).format('h:mma')
 
     return (
         <>
             <div className="areaChartRow">
                 <div>
-                    <div className="boldText mb-2">Sunrise</div>
-                    <div className="grayText">{sunriseTimeLabel}</div>
+                    <div className="boldText mb-2">{startLabel}</div>
+                    <div className="grayText">{startLabelTime}</div>
                 </div>
                 <div>
-                    <div className="boldText mb-2">Sunset</div>
-                    <div className="grayText">{sunsetTimeLabel}</div>
+                    <div className="boldText mb-2">{endLabel}</div>
+                    <div className="grayText">{endLabelTime}</div>
                 </div>
             </div>
             <ResponsiveContainer width='100%' height={160}>
@@ -135,7 +141,7 @@ export default function SunChart(props) {
                     <defs>
                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
                             <stop offset={off} stopColor="#c9ebff" stopOpacity={1} />
-                            <stop offset={off} stopColor="#7475b6" stopOpacity={0.8} />
+                            <stop offset={off} stopColor="#7475b6" stopOpacity={0.6} />
                         </linearGradient>
                     </defs>
                     <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot dayOrNight={dayOrNight} />} isAnimationActive={true} />
