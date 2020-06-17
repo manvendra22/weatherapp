@@ -7,6 +7,8 @@ import Days from './Days/Days'
 import SearchBar from './SearchBar/SearchBar'
 import WeatherCard from './WeatherCard/WeatherCard'
 
+import { fetchData } from './utility/utility.js'
+
 function App() {
   const [dailyWeatherData, setDailyWeatherData] = useState({})
   const [cityWeatherData, setCityWeatherData] = useState([])
@@ -57,38 +59,36 @@ function App() {
           fetchCityNameFromLoc(position.coords.latitude, position.coords.longitude)
         },
         function (error) {
-          ipLookUp(true)
+          ipLookUp()
           console.error('An error has occured while retrieving location', error)
         },
         { timeout: 1000 }
       )
     } else {
-      // geolocation is not supported, using ipLookUp to get location by passing flag true
-      ipLookUp(true)
+      // geolocation is not supported, using ipLookUp to get location
+      ipLookUp()
     }
   }
 
   async function fetchLocationData(latitude, longitude) {
     setIsLoading(true)
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`)
-    const data = await response.json()
-
+    const url = `https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`
+    const data = await fetchData(url)
     setDailyWeatherData(data)
     setIsLoading(false)
   }
 
   async function fetchCityAutocompleteData(q) {
     const url = `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=${process.env.REACT_APP_HERE_MAP_KEY}&query=${q}&maxresults=4&country=IND&resultType=city`
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await fetchData(url)
     fetchCityWeather(data.suggestions)
   }
 
   async function fetchCityWeather(cityWeatherData = []) {
     for (let i = 0; i < cityWeatherData.length; i++) {
       const postalCode = cityWeatherData[i].address.postalCode
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
-      const data = await response.json()
+      const url = `https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_API_KEY}`
+      const data = await fetchData(url)
       cityWeatherData[i].weatherData = data
     }
     if (!isInputEmpty.current) {
@@ -98,8 +98,7 @@ function App() {
   }
 
   async function fetchCityNameFromLoc(lat, lon) {
-    const response = await fetch(`https://geocode.xyz/${lat},${lon}?json=1`);
-    const data = await response.json();
+    const data = await fetchData(`https://geocode.xyz/${lat},${lon}?json=1`)
     if (data.city) {
       setCity(`${data.city}, ${data.state}, ${data.country}`)
     }
@@ -107,10 +106,8 @@ function App() {
 
   async function ipLookUp() {
     let ip = {}
-
     if (Object.keys(ipData).length === 0) {
-      const response = await fetch('https://ipapi.co/json');
-      const data = await response.json();
+      const data = await fetchData('https://ipapi.co/json')
       ip = data
       setIpData(data)
     } else {
