@@ -22,9 +22,9 @@
     justify-content: space-between;
 }
 
-.blueBox {
+.infoBox {
     width: 38%;
-    background: #F5FAFF;
+    background: #FFFDF5;
     padding: 10px 15px;
     text-align: left;
 }

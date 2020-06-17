@@ -45,7 +45,7 @@ export default function SunChart(props) {
 
     const sunriseTime = moment.unix(sunrise)
     const sunsetTime = moment.unix(sunset)
-    
+
     let dayOrNight = ''
     let chartData = []
 
@@ -112,35 +112,35 @@ export default function SunChart(props) {
 
     return (
         <>
-        <div className="areaChartRow">
-            <div>
-                <div className="boldText mb-2">Sunrise</div>
+            <div className="areaChartRow">
+                <div>
+                    <div className="boldText mb-2">Sunrise</div>
                     <div className="grayText">{sunriseTimeLabel}</div>
-            </div>
-            <div>
-                <div className="boldText mb-2">Sunset</div>
+                </div>
+                <div>
+                    <div className="boldText mb-2">Sunset</div>
                     <div className="grayText">{sunsetTimeLabel}</div>
+                </div>
             </div>
-        </div>
-        <ResponsiveContainer width='100%' height={160}>
-            <AreaChart
-                data={
-                    chartData
-                }
-                margin={{ top: 15, left: 20, right: 20, bottom: 10 }}
-            >
-                <XAxis dataKey="hourLabel" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
-                <YAxis hide={true} />
-                <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
-                <defs>
-                    <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset={off} stopColor="#FBE2AC" stopOpacity={0.8} />
-                        <stop offset={off} stopColor="#666667" stopOpacity={0.8} />
-                    </linearGradient>
-                </defs>
+            <ResponsiveContainer width='100%' height={160}>
+                <AreaChart
+                    data={
+                        chartData
+                    }
+                    margin={{ top: 15, left: 20, right: 20, bottom: 10 }}
+                >
+                    <XAxis dataKey="hourLabel" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
+                    <YAxis hide={true} />
+                    <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
+                    <defs>
+                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset={off} stopColor="#c9ebff" stopOpacity={0.8} />
+                            <stop offset={off} stopColor="#7475b6" stopOpacity={0.8} />
+                        </linearGradient>
+                    </defs>
                     <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot dayOrNight={dayOrNight} />} isAnimationActive={false} />
-            </AreaChart>
-        </ResponsiveContainer>
+                </AreaChart>
+            </ResponsiveContainer>
         </>
     );
 }

@@ -35,11 +35,11 @@ function WeatherCard(props) {
                             <WeatherChart data={hourly} selected={selected} />
                         </div>
                         <div className="secondaryRow">
-                            <div className="blueBox">
+                            <div className="infoBox">
                                 <div className="boldText mb-2">Pressure</div>
                                 <div>{pressure} hpa</div>
                             </div>
-                            <div className="blueBox">
+                            <div className="infoBox">
                                 <div className="boldText mb-2">Humidity</div>
                                 <div>{humidity} %</div>
                             </div>
