@@ -37,7 +37,7 @@ export default function WeatherChart(props) {
         <LineChart
             width={1300}
             height={160}
-            margin={{ top: 10, left: 20, right: 20, bottom: 5 }}
+            margin={{ top: 15, left: 20, right: 20, bottom: 5 }}
             data={mainChartData}
         >
             <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import _ from "lodash";
+import moment from 'moment'
 
 import './App.css';
 
@@ -77,6 +78,22 @@ function App() {
     const data = await fetchData(url)
     setDailyWeatherData(data)
     setIsLoading(false)
+  }
+
+  async function fetchCityAutocompleteData2(q) {
+    const url = 'https://places-dsn.algolia.net/1/places/query?type=city&countries=in'
+    const response = await fetch(url, { method: 'post', body: JSON.stringify({ query: q }) })
+    const data = await response.json()
+    // console.log({ data })
+    let temp = data?.hits?.[0]?._geoloc
+    fetchCityWeather2(temp.lat, temp.lng)
+  }
+
+  async function fetchCityWeather2(lat, lon) {
+    const url = `https://api.climacell.co/v3/weather/forecast/hourly?lat=${lat}&lon=${lon}&fields=temp,feels_like,humidity,baro_pressure,sunrise,sunset,weather_code&apikey=${process.env.REACT_APP_CLIMACELL_KEY}`
+    const data = await fetchData(url)
+    let time = moment(data[0].observation_time).format('h:mma')
+    console.log({ data }, { time })
   }
 
   async function fetchCityAutocompleteData(q) {

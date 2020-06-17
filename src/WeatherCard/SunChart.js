@@ -133,7 +133,7 @@ export default function SunChart(props) {
                     data={
                         chartData
                     }
-                    margin={{ top: 15, left: 20, right: 20, bottom: 10 }}
+                    margin={{ top: 15, left: 20, right: 20, bottom: 5 }}
                 >
                     <XAxis dataKey="hourLabel" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
                     <YAxis hide={true} />
