@@ -10,7 +10,7 @@ import search from '../icons/search.svg'
 import { getWeather } from '../utility/utility'
 
 function SearchBar(props) {
-    const { value, setValue, cityData, handleCityClick, setCurrentLocation, isLoading } = props
+    const { value, setValue, cityWeatherData, handleCityClick, setCurrentLocation, isLoading } = props
 
     return (
         <div className="search">
@@ -22,15 +22,15 @@ function SearchBar(props) {
             <div className="cityContainer">
                 {isLoading ?
                     <Loader /> :
-                    cityData.map((data, index) =>
-                        <div className="cityData" onClick={() => handleCityClick(index)} key={data.locationId}>
-                            <div dangerouslySetInnerHTML={{ __html: `${data.address.city}, ${data.address.state}, ${data.address.country}` }}></div>
+                    cityWeatherData.map((data, index) =>
+                        <div className="cityData" onClick={() => handleCityClick(index)} key={data?.locationId}>
+                            <div>{data?.address.city}, {data?.address.state}, {data?.address.country}</div>
                             <div className="cityWeather">
                                 <div className="mr-10">
-                                    <div className="boldText">{Math.round(data?.weatherData?.main?.temp)}&deg; C</div>
-                                    <div className="smallText grayText">{getWeather(data?.weatherData?.weather?.[0]?.id)?.label}</div>
+                                    <div className="boldText">{Math.round(data?.weatherData?.main.temp)}&deg; C</div>
+                                    <div className="smallText grayText">{getWeather(data?.weatherData?.weather[0].id).label}</div>
                                 </div>
-                                <img src={getWeather(data?.weatherData?.weather?.[0]?.id)?.icon} alt="dayIcon" className="smallIcon" />
+                                <img src={getWeather(data?.weatherData?.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
                             </div>
                         </div>
                     )

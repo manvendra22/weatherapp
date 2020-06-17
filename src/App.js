@@ -9,7 +9,7 @@ import WeatherCard from './WeatherCard/WeatherCard'
 
 function App() {
   const [dailyWeatherData, setDailyWeatherData] = useState({})
-  const [cityData, setCityData] = useState([])
+  const [cityWeatherData, setCityWeatherData] = useState([])
   const [ipData, setIpData] = useState({})
 
   const [city, setCity] = useState('')
@@ -33,18 +33,18 @@ function App() {
       isInputEmpty.current = false
       delayedQuery(value)
     } else {
-      setCityData([])
+      setCityWeatherData([])
       isInputEmpty.current = true
     }
   }
 
   function handleCityClick(index) {
-    let weatherData = cityData[index]?.weatherData
-    let cityName = `${cityData[index].address.city}, ${cityData[index].address.state}, ${cityData[index].address.country}`
+    let weatherData = cityWeatherData[index]?.weatherData
+    let cityName = `${cityWeatherData[index].address.city}, ${cityWeatherData[index].address.state}, ${cityWeatherData[index].address.country}`
 
     fetchLocationData(weatherData?.coord?.lat, weatherData?.coord?.lon)
     setCity(cityName)
-    setCityData([])
+    setCityWeatherData([])
     setSelected(0)
   }
 
@@ -84,15 +84,15 @@ function App() {
     fetchCityWeather(data.suggestions)
   }
 
-  async function fetchCityWeather(cityData) {
-    for (let i = 0; i < cityData.length; i++) {
-      const postalCode = cityData[i].address.postalCode
+  async function fetchCityWeather(cityWeatherData = []) {
+    for (let i = 0; i < cityWeatherData.length; i++) {
+      const postalCode = cityWeatherData[i].address.postalCode
       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
       const data = await response.json()
-      cityData[i].weatherData = data
+      cityWeatherData[i].weatherData = data
     }
     if (!isInputEmpty.current) {
-      setCityData(cityData)
+      setCityWeatherData(cityWeatherData)
     }
     setIsCityLoading(false)
   }
@@ -122,7 +122,7 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar value={city} setValue={setCityValue} cityData={cityData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
+      <SearchBar value={city} setValue={setCityValue} cityWeatherData={cityWeatherData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
       <Days data={dailyWeatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
       <WeatherCard data={dailyWeatherData} selected={selected} isLoading={isLoading} />
     </div>
