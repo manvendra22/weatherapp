@@ -109,13 +109,17 @@ function App() {
     let ip = {}
     if (Object.keys(ipData).length === 0) {
       const data = await fetchData('https://ipapi.co/json')
-      ip = data
-      setIpData(data)
+      if (!data.error) {
+        ip = data
+        setIpData(data)
+      }
     } else {
       ip = ipData
     }
-    fetchLocationData(ip.latitude, ip.latitude)
-    setCity(`${ip.city}, ${ip.region}, ${ip.country_name}`)
+    if (ip.latitude && ip.longitude) {
+      fetchLocationData(ip.latitude, ip.longitude)
+      setCity(`${ip.city}, ${ip.region}, ${ip.country_name}`)
+    }
   }
 
   return (
