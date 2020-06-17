@@ -23,6 +23,7 @@ function App() {
 
   useEffect(function () {
     getLocation()
+    // eslint-disable-next-line 
   }, [])
 
   const delayedQuery = useCallback(_.debounce(value => fetchCityAutocompleteData(value), 1000), []);
