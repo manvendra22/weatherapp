@@ -1,4 +1,5 @@
 import React from 'react';
+import ContentLoader from "react-content-loader"
 
 import Loader from './Loader'
 
@@ -39,13 +40,27 @@ function SearchWeather(props) {
 
     return (
         <div className="cityWeather">
-            <div className="mr-10">
-                <div className="boldText">{Math.round(data?.main?.temp)}&deg; C</div>
-                <div className="smallText grayText">{getWeather(data?.weather?.[0]?.id)?.label}</div>
-            </div>
-            <img src={getWeather(data?.weather?.[0]?.id)?.icon} alt="dayIcon" className="smallIcon" />
+            {Object.keys(data).length === 0 ?
+                <SearchLoader /> :
+                <>
+                    <div className="mr-10">
+                        <div className="boldText">{Math.round(data?.main?.temp)}&deg; C</div>
+                        <div className="smallText grayText">{getWeather(data?.weather?.[0]?.id)?.label}</div>
+                    </div>
+                    <img src={getWeather(data?.weather?.[0]?.id)?.icon} alt="dayIcon" className="smallIcon" />
+                </>}
         </div>
     )
 }
+
+const SearchLoader = () => (
+    <ContentLoader
+        width={'100%'}
+        height={55}
+    >
+        <rect x="70%" y="12" rx="5" ry="5" width="30%" height="10" />
+        <rect x="70%" y="32" rx="5" ry="5" width="30%" height="10" />
+    </ContentLoader>
+)
 
 export default SearchBar;
