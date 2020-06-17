@@ -2,7 +2,7 @@
 
 ### Live link
 
-https://weathercheck.vercel.app/
+https://weather-check-app.netlify.app/
 
 ![Screenshot](weather_check.png)
 
