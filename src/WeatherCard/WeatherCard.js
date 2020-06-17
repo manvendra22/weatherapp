@@ -14,8 +14,11 @@ function WeatherCard(props) {
     const current = daily[selected]
     const { pressure, humidity } = current || {}
 
-    const currentTime = moment().format('h')
-    const currentData = hourly.find(value => currentTime === moment.unix(value.dt).format('h'))
+    const currentTime = moment()
+    const currentHour = currentTime.format('h')
+    const currentDay = currentTime.format('dddd, h:mm a')
+
+    const currentData = hourly.find(value => currentHour === moment.unix(value.dt).format('h'))
     const currentTemp = Math.round(currentData?.temp)
 
     const weatherDetails = getWeather(currentData?.weather?.[0]?.id)
@@ -28,8 +31,11 @@ function WeatherCard(props) {
                     :
                     <>
                         <div className="mainRow">
-                            <span className="bigText">{currentTemp}&deg;C</span>
-                            <img src={weatherDetails.icon} alt="bigIcon" className="bigIcon" />
+                            <div className="mainTime">
+                                <span className="bigText">{currentTemp}&deg;C</span>
+                                <img src={weatherDetails.icon} alt="bigIcon" className="bigIcon" />
+                            </div>
+                            <div className="smallText grayText ml-3">{currentDay}</div>
                         </div>
                         <div className="mainChart">
                             <WeatherChart data={hourly} selected={selected} />

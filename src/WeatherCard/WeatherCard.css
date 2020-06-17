@@ -5,10 +5,17 @@
 }
 
 .mainRow {
+    /* display: flex; */
+    /* justify-content: flex-start; */
+    /* align-items: center; */
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.mainTime {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 .secondaryRow {
