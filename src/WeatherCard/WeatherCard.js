@@ -16,7 +16,7 @@ function WeatherCard(props) {
 
     const currentTime = moment()
     const currentHour = currentTime.format('h')
-    const currentDay = currentTime.format('dddd, h:mm a')
+    const currentDay = currentTime.format('dddd, h:mma')
 
     const currentData = hourly.find(value => currentHour === moment.unix(value.dt).format('h'))
     const currentTemp = Math.round(currentData?.temp)
