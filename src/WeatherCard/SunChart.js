@@ -113,8 +113,8 @@ export default function SunChart(props) {
 
     const off = gradientOffset();
 
-    const startLabelTime = moment.unix(dayOrNight = 'DAY' ? sunrise : sunset).format('h:mma')
-    const endLabelTime = moment.unix(dayOrNight = 'DAY' ? sunset : sunset).format('h:mma')
+    const startLabelTime = moment.unix(dayOrNight === 'DAY' ? sunrise : sunset).format('h:mma')
+    const endLabelTime = moment.unix(dayOrNight === 'DAY' ? sunset : sunset).format('h:mma')
 
     return (
         <>
@@ -141,7 +141,7 @@ export default function SunChart(props) {
                     <defs>
                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
                             <stop offset={off} stopColor="#c9ebff" stopOpacity={1} />
-                            <stop offset={off} stopColor="#7475b6" stopOpacity={0.6} />
+                            <stop offset={off} stopColor="#7475b6" stopOpacity={0.5} />
                         </linearGradient>
                     </defs>
                     <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot dayOrNight={dayOrNight} />} isAnimationActive={true} />
