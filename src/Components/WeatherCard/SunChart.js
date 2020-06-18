@@ -103,6 +103,7 @@ export default function SunChart(props) {
 
     useEffect(function () {
         setThemeBasedOnTime(toggleTheme, currentMode, dayOrNight)
+        // eslint-disable-next-line 
     }, [])
 
     let length = chartData.length
