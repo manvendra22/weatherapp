@@ -6,7 +6,10 @@ const colors = {
     '--color-gray': '#BDBDBD',
     '--color-granite-gray': '#666667',
     '--color-picton-blue': '#3AABEA',
-    '--color-milk': '#FFFDF5'
+    '--color-milk': '#FFFDF5',
+    '--color-eerie-black': '#161625',
+    '--color-dark-gunmetal': '#1E1E30',
+    '--color-aurometalsaurus': '#6C757D'
 }
 
 export const lightTheme = {

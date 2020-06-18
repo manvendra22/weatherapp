@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import './WeatherCard.css'
+
 import WeatherChart from './WeatherChart'
 import SunChart from './SunChart'
 import Loader from './Loader'

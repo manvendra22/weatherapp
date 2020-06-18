@@ -1,8 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 
-import './Days.css';
-
 import { getWeather } from '../../utility/utility'
 
 function DayCard(props) {

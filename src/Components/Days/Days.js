@@ -15,7 +15,6 @@ function Days(props) {
                     data.map((dayData, index) =>
                         <DayCard key={dayData.dt} data={dayData} active={index === selected} notClickable={index > 1} onClick={() => setSelected(index)} />
                     )
-
             }
         </div>
     );

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import _ from "lodash";
 
 import './App.css';
+import './utility/utility.css'
+import Layout from './utility/Layout'
 
 import Days from './Components/Days/Days'
 import SearchBar from './Components/SearchBar/SearchBar'
@@ -123,11 +125,13 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <SearchBar value={city} setValue={setCityValue} cityWeatherData={cityWeatherData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
-      <Days data={dailyWeatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
-      <WeatherCard data={dailyWeatherData} selected={selected} isLoading={isLoading} />
-    </div>
+    <Layout>
+      <div className="app">
+        <SearchBar value={city} setValue={setCityValue} cityWeatherData={cityWeatherData} handleCityClick={handleCityClick} setCurrentLocation={getLocation} isLoading={isCityLoading} />
+        <Days data={dailyWeatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
+        <WeatherCard data={dailyWeatherData} selected={selected} isLoading={isLoading} />
+      </div>
+    </Layout>
   );
 }
 
