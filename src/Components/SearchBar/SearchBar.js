@@ -4,8 +4,8 @@ import Loader from './Loader'
 
 import './SearchBar.css';
 
-import pin from '../../icons/pin.svg'
-import search from '../../icons/search.svg'
+import Pin from '../../icons/Pin'
+import Search from '../../icons/Search'
 
 import { getWeather } from '../../utility/utility'
 
@@ -15,9 +15,9 @@ function SearchBar(props) {
     return (
         <div className="search">
             <div className="searchContainer">
-                <img src={pin} alt="dayIcon" className="inputIcon" onClick={setCurrentLocation} />
+                <Pin height="22px" onClick={setCurrentLocation} />
                 <input type="text" className="searchbar" placeholder="Search Indian Cities" value={value} onChange={e => setValue(e.target.value)} />
-                <img src={search} alt="dayIcon" className="inputIcon" />
+                <Search height="22px" />
             </div>
             <div className="cityContainer">
                 {isLoading ?

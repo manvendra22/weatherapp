@@ -28,10 +28,6 @@
     border: 1px solid var(--color-primary);
 }
 
-.inputIcon {
-    height: 22px;
-}
-
 .cityContainer {
     position: absolute;
     width: 100%;
