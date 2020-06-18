@@ -1,14 +1,17 @@
 import React from 'react';
+import DarkModeToggle from "react-dark-mode-toggle";
 
-import moon from '../icons/moon.svg'
-import sun from '../icons/sun_dot.svg'
 import gitLogo from '../icons/github.svg'
 
 export default function Header({ toggleTheme, currentMode }) {
     return (
         <>
             <div className="toggleIcon">
-                <img src={currentMode === 'light' ? moon : sun} className="toggleIcon" alt="toggle-logo" onClick={toggleTheme} />
+                <DarkModeToggle
+                    onChange={toggleTheme}
+                    checked={currentMode === 'DARK'}
+                    size={80}
+                />
             </div>
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/manvendra22/weathercheck" className="gitLink">
                 <img src={gitLogo} alt="github-logo" className="gitIcon" />

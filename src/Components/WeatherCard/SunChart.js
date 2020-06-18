@@ -40,7 +40,7 @@ function CustomizedDot(props) {
 }
 
 function setThemeBasedOnTime(toggleTheme, currentMode, dayOrNight) {
-    if ((currentMode === 'dark' && dayOrNight === 'DAY') || (currentMode === 'light' && dayOrNight === 'NIGHT')) {
+    if ((currentMode === 'DARK' && dayOrNight === 'DAY') || (currentMode === 'LIGHT' && dayOrNight === 'NIGHT')) {
         toggleTheme()
     }
 }

@@ -6,16 +6,16 @@ import ThemeContext from './ThemeContext';
 import { lightTheme, darkTheme } from './theme'
 
 export default function Layout({ children }) {
-    const [currentMode, setCurrentMode] = useState('light');
+    const [currentMode, setCurrentMode] = useState('LIGHT');
 
     useEffect(() => {
-        if (localStorage.getItem('mode') === 'dark') {
-            setCurrentMode('dark');
+        if (localStorage.getItem('mode') === 'DARK') {
+            setCurrentMode('DARK');
         }
     }, []);
 
     useEffect(() => {
-        const theme = currentMode === 'light' ? lightTheme : darkTheme;
+        const theme = currentMode === 'LIGHT' ? lightTheme : darkTheme;
         Object.keys(theme).forEach(key => {
             const value = theme[key];
             document.documentElement.style.setProperty(key, value);
@@ -24,7 +24,7 @@ export default function Layout({ children }) {
 
 
     const toggleTheme = () => {
-        const newMode = currentMode === 'light' ? 'dark' : 'light';
+        const newMode = currentMode === 'LIGHT' ? 'DARK' : 'LIGHT';
         setCurrentMode(newMode);
         localStorage.setItem('mode', newMode);
     };

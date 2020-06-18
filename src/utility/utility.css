@@ -54,8 +54,7 @@
 .toggleIcon {
     position: fixed;
     left: 20px;
-    top: 20px;
-    height: 50px;
+    top: 30px;
     cursor: pointer;
 }
 
