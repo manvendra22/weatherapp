@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import suncalc from 'suncalc'
@@ -39,6 +39,12 @@ function CustomizedDot(props) {
     );
 }
 
+function setThemeBasedOnTime(toggleTheme, currentMode, dayOrNight) {
+    if ((currentMode === 'dark' && dayOrNight === 'DAY') || (currentMode === 'light' && dayOrNight === 'NIGHT')) {
+        toggleTheme()
+    }
+}
+
 export default function SunChart(props) {
     const { data } = props
     const { daily = [], lat, lon } = data
@@ -60,8 +66,6 @@ export default function SunChart(props) {
         startLabel = 'Sunrise'
         endLabel = 'Sunset'
 
-        // currentMode === 'dark' && toggleTheme()
-
         const sunriseTime = moment.unix(sunrise)
         const sunsetTime = moment.unix(sunset)
 
@@ -81,8 +85,6 @@ export default function SunChart(props) {
         startLabel = 'Sunset'
         endLabel = 'Sunrise'
 
-        // currentMode === 'light' && toggleTheme()
-
         const sunsetTime = moment.unix(sunset)
         const sunriseNextDayTime = moment.unix(sunriseNextDay)
 
@@ -98,6 +100,10 @@ export default function SunChart(props) {
             }
         })
     }
+
+    useEffect(function () {
+        setThemeBasedOnTime(toggleTheme, currentMode, dayOrNight)
+    }, [])
 
     let length = chartData.length
     let mid = Math.round(length / 2)
