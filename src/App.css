@@ -1,3 +1,8 @@
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
 .app {
   text-align: center;
   margin: 20px;
@@ -6,11 +11,12 @@
 @media only screen and (min-width: 750px) {
   .app {
     max-width: 750px;
-    margin: 20px auto;
+    margin: 30px auto;
   }
 }
 
-body {
-  background: var(--color-bg);
-  color: var(--color-text-primary);
+@media only screen and (max-width: 1024px) {
+  .app {
+    margin-top: 100px
+  }
 }
