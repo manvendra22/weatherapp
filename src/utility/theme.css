@@ -28,8 +28,3 @@
 
   --color-border-placeholder: var(--color-bg);
 }
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text-primary);
-}

@@ -9,3 +9,8 @@
     margin: 20px auto;
   }
 }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+}
