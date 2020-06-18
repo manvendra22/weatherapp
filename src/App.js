@@ -3,9 +3,9 @@ import _ from "lodash";
 
 import './App.css';
 
-import Days from './Days/Days'
-import SearchBar from './SearchBar/SearchBar'
-import WeatherCard from './WeatherCard/WeatherCard'
+import Days from './Components/Days/Days'
+import SearchBar from './Components/SearchBar/SearchBar'
+import WeatherCard from './Components/WeatherCard/WeatherCard'
 
 import { fetchData } from './utility/utility.js'
 

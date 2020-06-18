@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import './Days.css';
 
-import { getWeather } from '../utility/utility'
+import { getWeather } from '../../utility/utility'
 
 function DayCard(props) {
     const { data, active, notClickable, onClick } = props

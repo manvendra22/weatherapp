@@ -4,10 +4,10 @@ import Loader from './Loader'
 
 import './SearchBar.css';
 
-import pin from '../icons/pin.svg'
-import search from '../icons/search.svg'
+import pin from '../../icons/pin.svg'
+import search from '../../icons/search.svg'
 
-import { getWeather } from '../utility/utility'
+import { getWeather } from '../../utility/utility'
 
 function SearchBar(props) {
     const { value, setValue, cityWeatherData, handleCityClick, setCurrentLocation, isLoading } = props

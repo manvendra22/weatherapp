@@ -6,7 +6,7 @@ import WeatherChart from './WeatherChart'
 import SunChart from './SunChart'
 import Loader from './Loader'
 
-import { getWeather } from '../utility/utility'
+import { getWeather } from '../../utility/utility'
 
 function WeatherCard(props) {
     const { data, selected, isLoading } = props

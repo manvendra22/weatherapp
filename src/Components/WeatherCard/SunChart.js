@@ -6,8 +6,8 @@ import {
     AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine
 } from 'recharts';
 
-import sun from '../icons/sun_dot.svg'
-import moon from '../icons/moon.svg'
+import sun from '../../icons/sun_dot.svg'
+import moon from '../../icons/moon.svg'
 
 const moment = extendMoment(Moment);
 
