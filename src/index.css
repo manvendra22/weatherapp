@@ -8,13 +8,43 @@
   src: url(./fonts/HomepageBaukasten-Bold.ttf) format('truetype');
 }
 
+:root {
+  --color-white: #FFF;
+  --color-black: #000;
+  --color-gray: #BDBDBD;
+  --color-granite-gray: #666667;
+  --color-picton-blue: #3AABEA;
+  --color-milk: #FFFDF5;
+
+  --color-eerie-black: #161625;
+  --color-dark-gunmetal: #1E1E30;
+  --color-aurometalsaurus: #6C757D;
+
+  --color-bg: var(--color-white);
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-granite-gray);
+  --color-primary: var(--color-picton-blue);
+  --color-secondary: var(--color-milk);
+  --color-divider: var(--color-gray);
+  --color-input: var(--color-white);
+
+  /* --color-bg: var(--color-eerie-black);
+  --color-text-primary: var(--color-gray);
+  --color-text-secondary: var(--color-granite-gray);
+  --color-primary: var(--color-picton-blue);
+  --color-secondary: var(--color-dark-gunmetal);
+  --color-divider: var(--color-gray);
+  --color-input: var(--color-dark-gunmetal); */
+
+  --color-border-placeholder: var(--color-bg);
+}
+
 body {
-  margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
   font-family: 'HomepageBaukastenBook';
   font-size: 14px;
 }

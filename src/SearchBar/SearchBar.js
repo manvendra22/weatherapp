@@ -28,7 +28,7 @@ function SearchBar(props) {
                             <div className="cityWeather">
                                 <div className="mr-10">
                                     <div className="boldText">{Math.round(data?.weatherData?.main.temp)}&deg; C</div>
-                                    <div className="smallText grayText">{getWeather(data?.weatherData?.weather[0].id).label}</div>
+                                    <div className="smallText secondaryTextColor">{getWeather(data?.weatherData?.weather[0].id).label}</div>
                                 </div>
                                 <img src={getWeather(data?.weatherData?.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
                             </div>

@@ -29,7 +29,7 @@
 
 .infoBox {
     width: 38%;
-    background: #FFFDF5;
+    background: var(--color-secondary);
     padding: 10px 15px;
     text-align: left;
 }

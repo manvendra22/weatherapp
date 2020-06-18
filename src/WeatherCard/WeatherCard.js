@@ -32,10 +32,10 @@ function WeatherCard(props) {
                     <>
                         <div className="mainRow">
                             <div className="mainTime">
-                                <span className="bigText">{currentTemp}&deg;C</span>
+                                <span className="bigText boldText">{currentTemp}&deg;C</span>
                                 <img src={weatherDetails.icon} alt="bigIcon" className="bigIcon" />
                             </div>
-                            <div className="smallText grayText ml-3">{currentDay}</div>
+                            <div className="smallText secondaryTextColor ml-3">{currentDay}</div>
                         </div>
                         <div className="mainChart">
                             <WeatherChart data={hourly} selected={selected} />

@@ -121,11 +121,11 @@ export default function SunChart(props) {
             <div className="areaChartRow">
                 <div>
                     <div className="boldText mb-2">{startLabel}</div>
-                    <div className="grayText">{startLabelTime}</div>
+                    <div className="secondaryTextColor">{startLabelTime}</div>
                 </div>
                 <div>
                     <div className="boldText mb-2">{endLabel}</div>
-                    <div className="grayText">{endLabelTime}</div>
+                    <div className="secondaryTextColor">{endLabelTime}</div>
                 </div>
             </div>
             <ResponsiveContainer width='100%' height={160}>

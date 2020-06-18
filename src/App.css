@@ -12,7 +12,6 @@
 
 .bigText {
   font-size: 50px;
-  font-family: 'HomepageBaukastenBold';
 }
 
 .smallText {
@@ -23,8 +22,8 @@
   font-family: 'HomepageBaukastenBold';
 }
 
-.grayText {
-  color: #666667
+.secondaryTextColor {
+  color: var(--color-text-secondary)
 }
 
 .smallIcon {

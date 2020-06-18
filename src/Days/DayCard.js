@@ -15,11 +15,11 @@ function DayCard(props) {
     return (
         <div className={`dayCard ${active ? 'dayActive' : ''} ${notClickable ? 'notClickable' : ''}`} onClick={!notClickable && onClick}>
             <div className="mb-3">{day}</div>
-            <div className="mb-5"><span>{Math.round(temp?.max)}&deg;</span> <span className="grayText">{Math.round(temp?.min)}&deg;</span></div>
+            <div className="mb-5"><span>{Math.round(temp?.max)}&deg;</span> <span className="secondaryTextColor">{Math.round(temp?.min)}&deg;</span></div>
             <div className="mb-5">
                 <img src={weatherDetails.icon} alt="dayIcon" className="smallIcon" />
             </div>
-            <div className="smallText grayText">{weatherDetails.label}</div>
+            <div className="smallText secondaryTextColor">{weatherDetails.label}</div>
         </div>
     );
 }
