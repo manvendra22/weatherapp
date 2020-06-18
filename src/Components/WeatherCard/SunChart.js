@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import suncalc from 'suncalc'
 import {
     AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine
 } from 'recharts';
+
+import ThemeContext from '../../utility/ThemeContext';
 
 import sun from '../../icons/sun_dot.svg'
 import moon from '../../icons/moon.svg'
@@ -51,10 +53,14 @@ export default function SunChart(props) {
     let endLabel = ''
     let chartData = []
 
+    const { toggleTheme, currentMode } = useContext(ThemeContext);
+
     if (moment().isBetween(sunriseTime, sunsetTime)) {
         dayOrNight = 'DAY'
         startLabel = 'Sunrise'
         endLabel = 'Sunset'
+
+        // currentMode === 'dark' && toggleTheme()
 
         const sunriseTime = moment.unix(sunrise)
         const sunsetTime = moment.unix(sunset)
@@ -74,6 +80,8 @@ export default function SunChart(props) {
         dayOrNight = 'NIGHT'
         startLabel = 'Sunset'
         endLabel = 'Sunrise'
+
+        // currentMode === 'light' && toggleTheme()
 
         const sunsetTime = moment.unix(sunset)
         const sunriseNextDayTime = moment.unix(sunriseNextDay)

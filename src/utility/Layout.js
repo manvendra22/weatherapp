@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import Header from './Header'
+import ThemeContext from './ThemeContext';
+
 import { lightTheme, darkTheme } from './theme'
 
 export default function Layout({ children }) {
@@ -28,12 +30,12 @@ export default function Layout({ children }) {
     };
 
     return (
-        <div>
+        <ThemeContext.Provider value={{ toggleTheme, currentMode }}>
             <Header
                 toggleTheme={toggleTheme}
                 currentMode={currentMode}
             />
             <main>{children}</main>
-        </div>
+        </ThemeContext.Provider>
     );
 }
