@@ -47,13 +47,29 @@
     font-family: 'HomepageBaukastenBold';
 }
 
+.secondaryTextColor {
+    color: var(--color-text-secondary);
+}
+
 .toggleIcon {
     position: fixed;
-    left: 10px;
+    left: 20px;
     top: 20px;
+    height: 50px;
     cursor: pointer;
 }
 
-.secondaryTextColor {
-    color: var(--color-text-secondary);
+.gitLink {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+}
+
+.gitIcon {
+    width: 60px;
+    transition: all .3s ease-in-out;
+}
+
+.gitIcon:hover {
+    transform: rotate(360deg) scale(1.2);
 }
