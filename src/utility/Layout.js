@@ -35,7 +35,7 @@ export default function Layout({ children }) {
                 toggleTheme={toggleTheme}
                 currentMode={currentMode}
             />
-            <main>{children}</main>
+            {children}
         </ThemeContext.Provider>
     );
 }

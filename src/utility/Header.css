@@ -6,18 +6,14 @@
     display: flex;
     justify-content: space-between;
     z-index: 2;
-}
-
-@media only screen and (max-width: 1024px) {
-    .header {
-        background: var(--color-bg);
-    }
+    background: var(--color-bg);
 }
 
 .toggleIcon {
     cursor: pointer;
     margin-left: 20px;
     margin-top: 30px;
+    height: 50px;
 }
 
 .gitLink {

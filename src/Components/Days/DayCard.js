@@ -11,7 +11,7 @@ function DayCard(props) {
     const day = moment.unix(dt).format('ddd');
 
     return (
-        <div className={`dayCard ${active ? 'dayActive' : ''} ${notClickable ? 'notClickable' : ''}`} onClick={!notClickable && onClick}>
+        <div className={`dayCard ${active ? 'dayActive' : ''} ${notClickable ? 'notClickable' : ''}`} onClick={notClickable ? undefined : onClick}>
             <div className="mb-3">{day}</div>
             <div className="mb-5"><span>{Math.round(temp?.max)}&deg;</span> <span className="secondaryTextColor">{Math.round(temp?.min)}&deg;</span></div>
             <div className="mb-5">
