@@ -5,6 +5,8 @@ const Loader = () => (
     <ContentLoader
         width={'100%'}
         height={110}
+        backgroundColor="var(--color-backgroundColor)"
+        foregroundColor="var(--color-foregroundColor)"
     >
         <rect x="20" y="0" rx="5" ry="5" width="70" height="110" />
         <rect x="120" y="0" rx="5" ry="5" width="70" height="110" />
