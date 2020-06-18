@@ -17,8 +17,8 @@ export default function Header({ toggleTheme, currentMode }) {
                     checked={currentMode === 'DARK'}
                     size={80}
                 /> */}
-            <img src={currentMode === 'DARK' ? moon : sun} className="toggleIcon" alt="toggle-logo" onClick={toggleTheme} />
             {/* </div> */}
+            <img src={currentMode === 'DARK' ? moon : sun} className="toggleIcon" alt="toggle-logo" onClick={toggleTheme} />
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/manvendra22/weathercheck" className="gitLink">
                 <img src={gitLogo} alt="github-logo" className="gitIcon" />
             </a>
