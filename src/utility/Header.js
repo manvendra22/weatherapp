@@ -1,11 +1,12 @@
 import React from 'react';
 import DarkModeToggle from "react-dark-mode-toggle";
 
+import './Header.css'
 import gitLogo from '../icons/github.svg'
 
 export default function Header({ toggleTheme, currentMode }) {
     return (
-        <>
+        <div className="header">
             <div className="toggleIcon">
                 <DarkModeToggle
                     onChange={toggleTheme}
@@ -16,6 +17,6 @@ export default function Header({ toggleTheme, currentMode }) {
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/manvendra22/weathercheck" className="gitLink">
                 <img src={gitLogo} alt="github-logo" className="gitIcon" />
             </a>
-        </>
+        </div>
     );
 }

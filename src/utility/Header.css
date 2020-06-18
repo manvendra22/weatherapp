@@ -1,0 +1,35 @@
+.header {
+    position: fixed;
+    top: 0px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+@media only screen and (max-width: 1024px) {
+    .header {
+        background: var(--color-bg);
+    }
+}
+
+.toggleIcon {
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.gitLink {
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.gitIcon {
+    width: 60px;
+    transition: all .3s ease-in-out;
+}
+
+.gitIcon:hover {
+    transform: rotate(360deg) scale(1.2);
+}
