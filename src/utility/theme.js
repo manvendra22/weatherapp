@@ -1,3 +1,5 @@
+import './theme.css'
+
 const colors = {
     '--color-white': '#FFF',
     '--color-black': '#000',
@@ -7,7 +9,7 @@ const colors = {
     '--color-milk': '#FFFDF5'
 }
 
-const lightTheme = {
+export const lightTheme = {
     '--color-bg': colors['--color-white'],
     '--color-text-primary': colors['--color-black'],
     '--color-text-secondary': colors['--color-granite-gray'],
@@ -17,7 +19,7 @@ const lightTheme = {
     '--color-input': colors['--color-white']
 }
 
-const darkTheme = {
+export const darkTheme = {
     '--color-bg': colors['--color-eerie-black'],
     '--color-text-primary': colors['--color-gray'],
     '--color-text-secondary': colors['--color-granite-gray'],
