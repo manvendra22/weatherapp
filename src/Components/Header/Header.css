@@ -29,7 +29,7 @@
     cursor: pointer;
     border-radius: 25px;
     background-color: #70CBF8;
-    border: 4px solid #70CBF8;
+    border: 3px solid #70CBF8;
     transition: all .5s ease-in-out;
 }
 
@@ -50,7 +50,7 @@
 
 .darkModeInput:checked+.darkModeLabel {
     background-color: #1D2956;
-    border: 4px solid #1D2956;
+    border: 3px solid #1D2956;
 }
 
 .gitIcon {
