@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from './Header'
 import ThemeContext from './ThemeContext';
+import Header from '../Components/Header/Header'
 
 import { lightTheme, darkTheme } from './theme'
 
