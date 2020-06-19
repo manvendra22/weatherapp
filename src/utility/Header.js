@@ -1,5 +1,4 @@
 import React from 'react';
-// import DarkModeToggle from "react-dark-mode-toggle";
 
 import './Header.css'
 
@@ -11,14 +10,14 @@ export default function Header({ toggleTheme, currentMode }) {
 
     return (
         <div className="header">
-            {/* <div className="toggleIcon"> */}
-            {/* <DarkModeToggle
-                    onChange={toggleTheme}
-                    checked={currentMode === 'DARK'}
-                    size={80}
-                /> */}
-            {/* </div> */}
-            <img src={currentMode === 'DARK' ? moon : sun} className="toggleIcon" alt="toggle-logo" onClick={toggleTheme} />
+            <div className="darkModeToggle">
+                <input type="checkbox" className="darkModeInput" id="toggleButton" onChange={toggleTheme} checked={currentMode === 'DARK'} />
+                <label for="toggleButton" className="darkModeLabel">
+                    <img src={sun} alt="light-logo" />
+                    <img src={moon} alt="dark-logo" />
+                    <span class="blob"></span>
+                </label>
+            </div>
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/manvendra22/weathercheck" className="gitLink">
                 <img src={gitLogo} alt="github-logo" className="gitIcon" />
             </a>

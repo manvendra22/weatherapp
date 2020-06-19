@@ -6,11 +6,51 @@
     background: var(--color-bg);
 }
 
-.toggleIcon {
-    cursor: pointer;
-    height: 60px;
-    display: block;
+.darkModeToggle {
     margin-bottom: 20px;
+}
+
+.darkModeToggle img {
+    height: 20px;
+}
+
+.darkModeInput {
+    opacity: 0;
+    position: absolute;
+}
+
+.darkModeLabel {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: #70CBF8;
+    border: 3px solid #70CBF8;
+    transition: all .5s ease-in-out;
+}
+
+.darkModeLabel .blob {
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background: #FAF28A;
+    border-radius: 50%;
+    transition: .5s ease all;
+}
+
+.darkModeInput:checked+.darkModeLabel .blob {
+    left: 0;
+    background: #FCFDFC;
+}
+
+.darkModeInput:checked+.darkModeLabel {
+    background-color: #1D2956;
+    border: 3px solid #1D2956;
 }
 
 .gitIcon {
@@ -32,7 +72,7 @@
         justify-content: space-between;
     }
 
-    .toggleIcon {
+    .darkModeToggle {
         margin: 20px 0 0 20px;
     }
 
