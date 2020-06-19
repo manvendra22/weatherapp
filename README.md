@@ -48,4 +48,4 @@ Builds the app for production to the `build` folder.
 ### Roadmap:
 
  - [ ] Add more weather data
- - [ ] Add toggle button for datk mode
+ - [x] Add toggle button for datk mode
