@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Header.css'
 
-import moon from '../../icons/moon.svg'
-import sun from '../../icons/sun_dot.svg'
+import moon from '../../icons/moon_toggle.svg'
+import sun from '../../icons/cloud_toggle.svg'
 import gitLogo from '../../icons/github.svg'
 
 export default function Header({ toggleTheme, currentMode }) {
