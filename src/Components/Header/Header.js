@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Header.css'
 
-import moon from '../../icons/moon_toggle.svg'
-import sun from '../../icons/cloud_toggle.svg'
+import stars from '../../icons/stars.svg'
+import clouds from '../../icons/clouds.svg'
 import gitLogo from '../../icons/github.svg'
 
 export default function Header({ toggleTheme, currentMode }) {
@@ -13,8 +13,8 @@ export default function Header({ toggleTheme, currentMode }) {
             <div className="darkModeToggle">
                 <input type="checkbox" className="darkModeInput" id="toggleButton" onChange={toggleTheme} checked={currentMode === 'DARK'} />
                 <label for="toggleButton" className="darkModeLabel">
-                    <img src={sun} alt="light-logo" />
-                    <img src={moon} alt="dark-logo" />
+                    <img src={clouds} alt="light-logo" />
+                    <img src={stars} alt="dark-logo" />
                     <span class="blob"></span>
                 </label>
             </div>
