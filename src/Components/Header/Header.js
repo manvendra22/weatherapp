@@ -12,10 +12,10 @@ export default function Header({ toggleTheme, currentMode }) {
         <div className="header">
             <div className="darkModeToggle">
                 <input type="checkbox" className="darkModeInput" id="toggleButton" onChange={toggleTheme} checked={currentMode === 'DARK'} />
-                <label for="toggleButton" className="darkModeLabel">
+                <label htmlFor="toggleButton" className="darkModeLabel">
                     <img src={clouds} alt="light-logo" />
                     <img src={stars} alt="dark-logo" />
-                    <span class="blob"></span>
+                    <span className="blob"></span>
                 </label>
             </div>
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/manvendra22/weathercheck" className="gitLink">

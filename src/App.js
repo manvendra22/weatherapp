@@ -88,12 +88,22 @@ function App() {
   }
 
   async function fetchCityWeather(cityWeatherData = []) {
-    for (let i = 0; i < cityWeatherData.length; i++) {
-      const postalCode = cityWeatherData[i].address.postalCode
+    const URLs = []
+
+    cityWeatherData.forEach(data => {
+      const postalCode = data.address.postalCode
       const url = `https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_API_KEY}`
-      const data = await fetchData(url)
-      cityWeatherData[i].weatherData = data
-    }
+      URLs.push(url)
+    })
+
+    const results = await Promise.allSettled(URLs.map(url => fetchData(url)))
+
+    results.forEach((result, i) => {
+      if (result.status === "fulfilled") {
+        cityWeatherData[i].weatherData = result.value
+      }
+    })
+
     if (!isInputEmpty.current) {
       setCityWeatherData(cityWeatherData)
     }
