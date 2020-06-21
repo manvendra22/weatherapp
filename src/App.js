@@ -82,7 +82,7 @@ function App() {
   }
 
   async function fetchCityAutocompleteData(q) {
-    const url = `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=${process.env.REACT_APP_HERE_MAP_KEY}&query=${q}&maxresults=4&country=IND&resultType=city`
+    const url = `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=${process.env.REACT_APP_HERE_MAP_KEY}&query=${q}&maxresults=5&country=IND&resultType=city`
     const data = await fetchData(url)
     fetchCityWeather(data.suggestions)
   }

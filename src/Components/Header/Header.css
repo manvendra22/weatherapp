@@ -2,7 +2,6 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 2;
     background: var(--color-bg);
 }
 
@@ -70,6 +69,7 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        z-index: 3
     }
 
     .darkModeToggle {
