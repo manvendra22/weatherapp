@@ -49,3 +49,4 @@ Builds the app for production to the `build` folder.
 
  - [ ] Add more weather data
  - [x] Add toggle button for datk mode
+ - [ ] Close dropdown on click outside

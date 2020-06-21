@@ -27,7 +27,7 @@ function SearchBar(props) {
                             <div>{data?.address.city}, {data?.address.state}, {data?.address.country}</div>
                             <div className="cityWeather">
                                 <div className="mr-10">
-                                    <div className="boldText">{Math.round(data?.weatherData?.main.temp)}&deg; C</div>
+                                    <div className="boldText mb-2">{Math.round(data?.weatherData?.main.temp)}&deg; C</div>
                                     <div className="smallText secondaryTextColor">{getWeather(data?.weatherData?.weather[0].id).label}</div>
                                 </div>
                                 <img src={getWeather(data?.weatherData?.weather[0].id).icon} alt="dayIcon" className="smallIcon" />
