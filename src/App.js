@@ -67,7 +67,7 @@ function App() {
   return (
     <Layout>
       <div className="app">
-        <SearchBar city={city} setCity={city} fetchLocationData={fetchLocationData} setSelected={setSelected} setCurrentLocation={getLocation} />
+        <SearchBar city={city} setCity={setCity} fetchLocationData={fetchLocationData} setSelected={setSelected} setCurrentLocation={getLocation} />
         <Days data={dailyWeatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
         <WeatherCard data={dailyWeatherData} selected={selected} isLoading={isLoading} />
       </div>
