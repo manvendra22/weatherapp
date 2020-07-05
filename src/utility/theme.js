@@ -1,6 +1,6 @@
 import './theme.css'
 
-const colors = {
+const COLORS = {
     '--color-white': '#FFF',
     '--color-black': '#000',
     '--color-gray': '#BDBDBD',
@@ -16,26 +16,26 @@ const colors = {
     '--color-gun-powder': '#454551'
 }
 
-export const lightTheme = {
-    '--color-bg': colors['--color-white'],
-    '--color-text-primary': colors['--color-black'],
-    '--color-text-secondary': colors['--color-granite-gray'],
-    '--color-primary': colors['--color-picton-blue'],
-    '--color-secondary': colors['--color-milk'],
-    '--color-divider': colors['--color-gray'],
-    '--color-input': colors['--color-white'],
-    '--color-backgroundColor': colors['--color-alice-blue'],
-    '--color-foregroundColor': colors['--color-whisper']
+export const LIGHT = {
+    '--color-bg': COLORS['--color-white'],
+    '--color-text-primary': COLORS['--color-black'],
+    '--color-text-secondary': COLORS['--color-granite-gray'],
+    '--color-primary': COLORS['--color-picton-blue'],
+    '--color-secondary': COLORS['--color-milk'],
+    '--color-divider': COLORS['--color-gray'],
+    '--color-input': COLORS['--color-white'],
+    '--color-backgroundColor': COLORS['--color-alice-blue'],
+    '--color-foregroundColor': COLORS['--color-whisper']
 }
 
-export const darkTheme = {
-    '--color-bg': colors['--color-eerie-black'],
-    '--color-text-primary': colors['--color-gray'],
-    '--color-text-secondary': colors['--color-granite-gray'],
-    '--color-primary': colors['--color-picton-blue'],
-    '--color-secondary': colors['--color-dark-gunmetal'],
-    '--color-divider': colors['--color-gray'],
-    '--color-input': colors['--color-dark-gunmetal'],
-    '--color-backgroundColor': colors['--color-black-rock'],
-    '--color-foregroundColor': colors['--color-gun-powder']
+export const DARK = {
+    '--color-bg': COLORS['--color-eerie-black'],
+    '--color-text-primary': COLORS['--color-gray'],
+    '--color-text-secondary': COLORS['--color-granite-gray'],
+    '--color-primary': COLORS['--color-picton-blue'],
+    '--color-secondary': COLORS['--color-dark-gunmetal'],
+    '--color-divider': COLORS['--color-gray'],
+    '--color-input': COLORS['--color-dark-gunmetal'],
+    '--color-backgroundColor': COLORS['--color-black-rock'],
+    '--color-foregroundColor': COLORS['--color-gun-powder']
 }
