@@ -60,7 +60,7 @@ function App() {
     const data = await fetchData('https://ipapi.co/json')
     if (!data.error) {
       fetchLocationData(data.latitude, data.longitude)
-      setCity(`${ip.city}, ${ip.region}, ${ip.country_name}`)
+      setCity(`${data.city}, ${data.region}, ${data.country_name}`)
     }
   }
 
