@@ -22,9 +22,9 @@
   --color-text-primary: var(--color-black);
   --color-text-secondary: var(--color-granite-gray);
   --color-primary: var(--color-picton-blue);
-  --color-secondary: var(--color-milk);
   --color-divider: var(--color-gray);
-  --color-input: var(--color-white);
+  --color-highlight: var(--color-milk);
+  --color-highlight-bg: var(--color-white);
   --color-backgroundColor: var(--color-alice-blue);
   --color-foregroundColor: var(--color-whisper);
 
@@ -33,11 +33,11 @@
   --color-text-primary: var(--color-gray);
   --color-text-secondary: var(--color-granite-gray);
   --color-primary: var(--color-picton-blue);
-  --color-secondary: var(--color-dark-gunmetal);
   --color-divider: var(--color-gray);
-  --color-input: var(--color-dark-gunmetal);
-  --color-backgroundColor: var(---color-black-rock);
-  --color-foregroundColor: var(---color-gun-powder); */
+  --color-highlight: var(--color-black-rock);
+  --color-highlight-bg: var(--color-dark-gunmetal);
+  --color-backgroundColor: var(--color-black-rock);
+  --color-foregroundColor: var(--color-gun-powder); */
 
   --color-border-placeholder: var(--color-bg);
 }

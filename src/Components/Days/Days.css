@@ -16,7 +16,7 @@
 
 .dayActive {
     border: 2px solid var(--color-primary);
-    background: var(--color-secondary);
+    background: var(--color-highlight);
 }
 
 .notClickable {

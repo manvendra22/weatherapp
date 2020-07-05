@@ -21,9 +21,9 @@ export const LIGHT = {
     '--color-text-primary': COLORS['--color-black'],
     '--color-text-secondary': COLORS['--color-granite-gray'],
     '--color-primary': COLORS['--color-picton-blue'],
-    '--color-secondary': COLORS['--color-milk'],
     '--color-divider': COLORS['--color-gray'],
-    '--color-input': COLORS['--color-white'],
+    '--color-highlight': COLORS['--color-milk'],
+    '--color-highlight-bg': COLORS['--color-white'],
     '--color-backgroundColor': COLORS['--color-alice-blue'],
     '--color-foregroundColor': COLORS['--color-whisper']
 }
@@ -33,9 +33,9 @@ export const DARK = {
     '--color-text-primary': COLORS['--color-gray'],
     '--color-text-secondary': COLORS['--color-granite-gray'],
     '--color-primary': COLORS['--color-picton-blue'],
-    '--color-secondary': COLORS['--color-dark-gunmetal'],
     '--color-divider': COLORS['--color-gray'],
-    '--color-input': COLORS['--color-dark-gunmetal'],
+    '--color-highlight': COLORS['--color-black-rock'],
+    '--color-highlight-bg': COLORS['--color-dark-gunmetal'],
     '--color-backgroundColor': COLORS['--color-black-rock'],
     '--color-foregroundColor': COLORS['--color-gun-powder']
 }
