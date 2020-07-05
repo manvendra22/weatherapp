@@ -12,11 +12,10 @@ import { getWeather } from '../../utility/utility'
 import { fetchData } from '../../utility/utility'
 
 function SearchBar(props) {
-    const [city, setCity] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [cityWeatherData, setCityWeatherData] = useState([])
 
-    const { fetchLocationData, setSelected, setCurrentLocation } = props
+    const { city, setCity, fetchLocationData, setSelected, setCurrentLocation } = props
 
     const isInputEmpty = useRef(true)
     const delayedQuery = useCallback(_.debounce(value => fetchCityAutocompleteData(value), 1000), []);

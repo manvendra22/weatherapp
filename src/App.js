@@ -11,6 +11,7 @@ import WeatherCard from './Components/WeatherCard/WeatherCard'
 import { fetchData } from './utility/utility'
 
 function App() {
+  const [city, setCity] = useState('')
   const [selected, setSelected] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [dailyWeatherData, setDailyWeatherData] = useState({})
@@ -26,7 +27,7 @@ function App() {
       navigator.geolocation.getCurrentPosition(
         function (position) {
           fetchLocationData(position.coords.latitude, position.coords.longitude)
-          // fetchCityNameFromLoc(position.coords.latitude, position.coords.longitude)
+          fetchCityNameFromLoc(position.coords.latitude, position.coords.longitude)
         },
         function (error) {
           ipLookUp()
@@ -48,25 +49,25 @@ function App() {
     setIsLoading(false)
   }
 
-  // async function fetchCityNameFromLoc(lat, lon) {
-  //   const data = await fetchData(`https://geocode.xyz/${lat},${lon}?json=1`)
-  //   if (data.city) {
-  //     setCity(`${data.city}, ${data.state}, ${data.country}`)
-  //   }
-  // }
+  async function fetchCityNameFromLoc(lat, lon) {
+    const data = await fetchData(`https://geocode.xyz/${lat},${lon}?json=1`)
+    if (data.city) {
+      setCity(`${data.city}, ${data.state}, ${data.country}`)
+    }
+  }
 
   async function ipLookUp() {
     const data = await fetchData('https://ipapi.co/json')
     if (!data.error) {
       fetchLocationData(data.latitude, data.longitude)
-      // setCity(`${ip.city}, ${ip.region}, ${ip.country_name}`)
+      setCity(`${ip.city}, ${ip.region}, ${ip.country_name}`)
     }
   }
 
   return (
     <Layout>
       <div className="app">
-        <SearchBar fetchLocationData={fetchLocationData} setSelected={setSelected} setCurrentLocation={getLocation} />
+        <SearchBar city={city} setCity={city} fetchLocationData={fetchLocationData} setSelected={setSelected} setCurrentLocation={getLocation} />
         <Days data={dailyWeatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
         <WeatherCard data={dailyWeatherData} selected={selected} isLoading={isLoading} />
       </div>
