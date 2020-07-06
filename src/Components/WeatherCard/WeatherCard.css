@@ -47,6 +47,8 @@
 }
 
 .customTooltip {
+    height: 50px;
+    width: 40px;
     padding: 10px;
     background: var(--color-highlight);
     border: 2px solid var(--color-primary);
