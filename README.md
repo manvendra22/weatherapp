@@ -47,6 +47,6 @@ Builds the app for production to the `build` folder.
 
 ### Roadmap:
 
- - [ ] Add more weather data
+ - [X] Add more weather data
  - [x] Add toggle button for dark mode
  - [ ] Close dropdown on click outside
