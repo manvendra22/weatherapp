@@ -45,3 +45,10 @@
     overflow-x: scroll;
     margin-bottom: 30px;
 }
+
+.customTooltip {
+    padding: 10px;
+    background: var(--color-highlight);
+    border: 2px solid var(--color-primary);
+    opacity: 0.9;
+}
