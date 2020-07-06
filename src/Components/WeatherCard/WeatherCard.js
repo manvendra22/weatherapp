@@ -11,8 +11,8 @@ import { getWeather } from '../../utility/utility'
 
 function WeatherCard(props) {
     const { data, isLoading } = props
-    const { current, hourly } = data
-    const { pressure, humidity } = current || {}
+    const { current = {}, hourly } = data
+    const { pressure, humidity, wind_speed, uvi } = current
 
     const currentTime = moment()
     const currentDay = currentTime.format('dddd, h:mma')
@@ -35,14 +35,26 @@ function WeatherCard(props) {
                             <div className="smallText secondaryTextColor ml-3">{currentDay}</div>
                         </div>
                         <WeatherChart data={hourly} />
-                        <div className="secondaryRow">
-                            <div className="infoBox">
-                                <div className="boldText mb-2">Pressure</div>
-                                <div>{pressure} hpa</div>
+                        <div className="mb-40">
+                            <div className="secondaryRow mb">
+                                <div className="infoBox mr">
+                                    <div className="boldText mb-2">Pressure</div>
+                                    <div>{pressure} hpa</div>
+                                </div>
+                                <div className="infoBox">
+                                    <div className="boldText mb-2">Humidity</div>
+                                    <div>{humidity} %</div>
+                                </div>
                             </div>
-                            <div className="infoBox">
-                                <div className="boldText mb-2">Humidity</div>
-                                <div>{humidity} %</div>
+                            <div className="secondaryRow">
+                                <div className="infoBox mr">
+                                    <div className="boldText mb-2">Wind Speed</div>
+                                    <div>{wind_speed} meter/sec</div>
+                                </div>
+                                <div className="infoBox">
+                                    <div className="boldText mb-2">UV Index</div>
+                                    <div>{uvi}</div>
+                                </div>
                             </div>
                         </div>
                         <SunChart data={data} />
