@@ -15,7 +15,7 @@ function SearchBar(props) {
     const [isLoading, setIsLoading] = useState(false)
     const [cityWeatherData, setCityWeatherData] = useState([])
 
-    const { city, setCity, fetchLocationData, setSelected, setCurrentLocation } = props
+    const { city, setCity, fetchLocationData, setCurrentLocation } = props
 
     const isInputEmpty = useRef(true)
     const delayedQuery = useCallback(_.debounce(value => fetchCityAutocompleteData(value), 1000), []);
@@ -39,7 +39,6 @@ function SearchBar(props) {
         fetchLocationData(weatherData?.coord?.lat, weatherData?.coord?.lon)
         setCity(cityName)
         setCityWeatherData([])
-        setSelected(0)
     }
 
     async function fetchCityAutocompleteData(q) {

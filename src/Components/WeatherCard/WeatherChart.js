@@ -20,7 +20,7 @@ function CustomizedAxisTick(props) {
 }
 
 export default function WeatherChart(props) {
-    const { data = [], selected } = props
+    const { data = [] } = props
 
     const chartData = data.map(value => {
         return {
@@ -28,22 +28,24 @@ export default function WeatherChart(props) {
         }
     })
 
-    const firstChartData = chartData.slice(0, 24)
-    const secondChartData = chartData.slice(24, 48)
-
-    const mainChartData = selected % 2 === 0 ? firstChartData : secondChartData
-
     return (
-        <LineChart
-            width={1300}
-            height={160}
-            margin={{ top: 15, left: 20, right: 20, bottom: 5 }}
-            data={mainChartData}
-        >
-            <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
-            <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick chartData={mainChartData} />} axisLine={false} />
-            <YAxis domain={['dataMin', 'auto']} hide={true} />
-            <Line type="natural" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 5 }} isAnimationActive={false} />
-        </LineChart>
+        <>
+            <div className="secondaryTextColor">
+                48 Hours Forecast
+            </div>
+            <div className="mainChart">
+                <LineChart
+                    width={2600}
+                    height={160}
+                    margin={{ top: 15, left: 20, right: 20, bottom: 5 }}
+                    data={chartData}
+                >
+                    <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
+                    <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick chartData={chartData} />} axisLine={false} />
+                    <YAxis domain={['dataMin', 'auto']} hide={true} />
+                    <Line type="natural" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 5 }} isAnimationActive={false} />
+                </LineChart>
+            </div>
+        </>
     );
 }

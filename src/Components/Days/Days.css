@@ -8,17 +8,8 @@
 .dayCard {
     text-align: center;
     padding: 10px;
-    margin-left: 15px;
+    margin-left: 20px;
     flex: 0 0 auto;
-    border: 2px solid var(--color-border-placeholder);
-    cursor: pointer;
-}
-
-.dayActive {
-    border: 2px solid var(--color-primary);
     background: var(--color-highlight);
-}
-
-.notClickable {
-    cursor: not-allowed;
+    /* border: 2px solid var(--color-primary); */
 }

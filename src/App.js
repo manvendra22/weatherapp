@@ -12,7 +12,6 @@ import { fetchData } from './utility/utility'
 
 function App() {
   const [city, setCity] = useState('')
-  const [selected, setSelected] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [dailyWeatherData, setDailyWeatherData] = useState({})
 
@@ -43,7 +42,7 @@ function App() {
 
   async function fetchLocationData(latitude, longitude) {
     setIsLoading(true)
-    const url = `https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,current&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`
+    const url = `https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`
     const data = await fetchData(url)
     setDailyWeatherData(data)
     setIsLoading(false)
@@ -67,9 +66,9 @@ function App() {
   return (
     <Layout>
       <div className="app">
-        <SearchBar city={city} setCity={setCity} fetchLocationData={fetchLocationData} setSelected={setSelected} setCurrentLocation={getLocation} />
-        <Days data={dailyWeatherData.daily} selected={selected} setSelected={setSelected} isLoading={isLoading} />
-        <WeatherCard data={dailyWeatherData} selected={selected} isLoading={isLoading} />
+        <SearchBar city={city} setCity={setCity} fetchLocationData={fetchLocationData} setCurrentLocation={getLocation} />
+        <Days data={dailyWeatherData.daily} isLoading={isLoading} />
+        <WeatherCard data={dailyWeatherData} isLoading={isLoading} />
       </div>
     </Layout>
   );

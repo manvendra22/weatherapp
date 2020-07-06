@@ -133,6 +133,9 @@ export default function SunChart(props) {
 
     return (
         <>
+            <div className="secondaryTextColor">
+                Sun Position
+            </div>
             <div className="areaChartRow">
                 <div>
                     <div className="boldText mb-2">{startLabel}</div>

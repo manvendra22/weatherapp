@@ -5,7 +5,7 @@ import DayCard from './DayCard'
 import Loader from './Loader'
 
 function Days(props) {
-    const { data = [], selected, setSelected, isLoading } = props
+    const { data = [], isLoading } = props
 
     return (
         <div className="days">
@@ -13,7 +13,7 @@ function Days(props) {
                 isLoading ?
                     <Loader /> :
                     data.map((dayData, index) =>
-                        <DayCard key={dayData.dt} data={dayData} active={index === selected} notClickable={index > 1} onClick={() => setSelected(index)} />
+                        <DayCard key={dayData.dt} data={dayData} />
                     )
             }
         </div>

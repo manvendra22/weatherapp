@@ -10,19 +10,15 @@ import Loader from './Loader'
 import { getWeather } from '../../utility/utility'
 
 function WeatherCard(props) {
-    const { data, selected, isLoading } = props
-    const { daily = [], hourly = [] } = data
-    const current = daily[selected]
+    const { data, isLoading } = props
+    const { current, hourly } = data
     const { pressure, humidity } = current || {}
 
     const currentTime = moment()
-    const currentHour = currentTime.format('h')
     const currentDay = currentTime.format('dddd, h:mma')
+    const currentTemp = Math.round(current?.temp)
 
-    const currentData = hourly.find(value => currentHour === moment.unix(value.dt).format('h'))
-    const currentTemp = Math.round(currentData?.temp)
-
-    const weatherDetails = getWeather(currentData?.weather?.[0]?.id)
+    const weatherDetails = getWeather(current?.weather?.[0]?.id)
 
     return (
         <div className="weatherCard">
@@ -38,9 +34,7 @@ function WeatherCard(props) {
                             </div>
                             <div className="smallText secondaryTextColor ml-3">{currentDay}</div>
                         </div>
-                        <div className="mainChart">
-                            <WeatherChart data={hourly} selected={selected} />
-                        </div>
+                        <WeatherChart data={hourly} />
                         <div className="secondaryRow">
                             <div className="infoBox">
                                 <div className="boldText mb-2">Pressure</div>
