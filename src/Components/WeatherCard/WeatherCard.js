@@ -35,7 +35,7 @@ function WeatherCard(props) {
                             <div className="smallText secondaryTextColor ml-3">{currentDay}</div>
                         </div>
                         <WeatherChart data={hourly} />
-                        <div className="mb-40">
+                        <div className="mb-30">
                             <div className="secondaryRow mb">
                                 <div className="infoBox mr">
                                     <div className="boldText mb-2">Pressure</div>
