@@ -9,6 +9,11 @@ import Loader from './Loader'
 
 import { getWeather } from '../../utility/utility'
 
+import Pressure from '../../icons/Pressure.js'
+import Humidity from '../../icons/Humidity.js'
+import Wind from '../../icons/Wind.js'
+import UVprotection from '../../icons/UVprotection.js'
+
 function WeatherCard(props) {
     const { data, isLoading } = props
     const { current = {}, hourly } = data
@@ -38,22 +43,34 @@ function WeatherCard(props) {
                         <div className="mb-30">
                             <div className="secondaryRow mb">
                                 <div className="infoBox mr">
-                                    <div className="boldText mb-2">Pressure</div>
-                                    <div>{pressure} hpa</div>
+                                    <div>
+                                        <div className="boldText mb-2">Pressure</div>
+                                        <div>{pressure} hpa</div>
+                                    </div>
+                                    <Pressure height="30" />
                                 </div>
                                 <div className="infoBox">
-                                    <div className="boldText mb-2">Humidity</div>
-                                    <div>{humidity} %</div>
+                                    <div>
+                                        <div className="boldText mb-2">Humidity</div>
+                                        <div>{humidity} %</div>
+                                    </div>
+                                    <Humidity height="30" />
                                 </div>
                             </div>
                             <div className="secondaryRow">
                                 <div className="infoBox mr">
-                                    <div className="boldText mb-2">Wind Speed</div>
-                                    <div>{wind_speed} meter/sec</div>
+                                    <div>
+                                        <div className="boldText mb-2">Wind Speed</div>
+                                        <div>{wind_speed} meter/sec</div>
+                                    </div>
+                                    <Wind height="30" />
                                 </div>
                                 <div className="infoBox">
-                                    <div className="boldText mb-2">UV Index</div>
-                                    <div>{uvi}</div>
+                                    <div>
+                                        <div className="boldText mb-2">UV Index</div>
+                                        <div>{uvi}</div>
+                                    </div>
+                                    <UVprotection height="30" />
                                 </div>
                             </div>
                         </div>
