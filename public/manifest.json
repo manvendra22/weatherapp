@@ -1,6 +1,6 @@
 {
   "short_name": "Weather Check",
-  "name": "Weather Checker App",
+  "name": "Weather Check",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
