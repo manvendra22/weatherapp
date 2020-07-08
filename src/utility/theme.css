@@ -15,7 +15,9 @@
   --color-dark-gunmetal: #1E1E30;
   --color-aurometalsaurus: #6C757D;
   --color-black-rock: #2D2D3B;
-  --color-gun-powder: #454551; */
+  --color-gun-powder: #454551;
+  --color-scarpa-flow: #585862;
+  */
 
   /* Light mode */
   --color-bg: var(--color-white);
@@ -31,13 +33,14 @@
   /* Dark mode */
   /* --color-bg: var(--color-eerie-black);
   --color-text-primary: var(--color-gray);
-  --color-text-secondary: var(--color-granite-gray);
+  --color-text-secondary: var(--color-gray);
   --color-primary: var(--color-picton-blue);
   --color-divider: var(--color-gray);
-  --color-highlight: var(--color-black-rock);
-  --color-highlight-bg: var(--color-dark-gunmetal);
-  --color-backgroundColor: var(--color-black-rock);
-  --color-foregroundColor: var(--color-gun-powder); */
+  --color-highlight: var(--color-dark-gunmetal);
+  --color-highlight-bg: var(--color-black-rock);
+  --color-backgroundColor: var(--color-gun-powder));
+  --color-foregroundColor: var(--color-scarpa-flow);
+  */
 
   --color-border-placeholder: var(--color-bg);
 }

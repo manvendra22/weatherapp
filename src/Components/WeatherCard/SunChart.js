@@ -22,7 +22,7 @@ function CustomizedAxisTick(props) {
 
     return (
         <g transform={`translate(${x},${y})`}>
-            <text dy={10} textAnchor={anchor[index]} fill="#666667" fontSize={12} fontWeight={500} >{payload.value}</text>
+            <text dy={10} textAnchor={anchor[index]} fill='var(--color-text-secondary)' fontSize={12} fontWeight={500} >{payload.value}</text>
         </g>
     );
 }
@@ -155,7 +155,7 @@ export default function SunChart(props) {
                 >
                     <XAxis dataKey="hourLabel" height={50} ticks={ticksData} tick={<CustomizedAxisTick />} tickSize={20} axisLine={false} />
                     <YAxis hide={true} />
-                    <ReferenceLine purpose='fake x axis' y={0} stroke='#666667' />
+                    <ReferenceLine purpose='fake x axis' y={0} stroke='var(--color-text-secondary)' />
                     <defs>
                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
                             <stop offset={off} stopColor="#c9ebff" stopOpacity={1} />

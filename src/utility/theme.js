@@ -13,7 +13,8 @@ const COLORS = {
     '--color-dark-gunmetal': '#1E1E30',
     '--color-aurometalsaurus': '#6C757D',
     '--color-black-rock': '#2D2D3B',
-    '--color-gun-powder': '#454551'
+    '--color-gun-powder': '#454551',
+    '--color-scarpa-flow': '#585862'
 }
 
 export const LIGHT = {
@@ -31,11 +32,11 @@ export const LIGHT = {
 export const DARK = {
     '--color-bg': COLORS['--color-eerie-black'],
     '--color-text-primary': COLORS['--color-gray'],
-    '--color-text-secondary': COLORS['--color-granite-gray'],
+    '--color-text-secondary': COLORS['--color-gray'],
     '--color-primary': COLORS['--color-picton-blue'],
     '--color-divider': COLORS['--color-gray'],
-    '--color-highlight': COLORS['--color-black-rock'],
-    '--color-highlight-bg': COLORS['--color-dark-gunmetal'],
-    '--color-backgroundColor': COLORS['--color-black-rock'],
-    '--color-foregroundColor': COLORS['--color-gun-powder']
+    '--color-highlight': COLORS['--color-dark-gunmetal'],
+    '--color-highlight-bg': COLORS['--color-black-rock'],
+    '--color-backgroundColor': COLORS['--color-gun-powder'],
+    '--color-foregroundColor': COLORS['--color-scarpa-flow'],
 }
