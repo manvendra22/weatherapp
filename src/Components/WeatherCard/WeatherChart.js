@@ -52,7 +52,7 @@ export default function WeatherChart(props) {
 
     return (
         <>
-            <div className="secondaryTextColor">
+            <div className="chartTitle">
                 48 Hours Forecast
             </div>
             <div className="mainChart">

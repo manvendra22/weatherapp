@@ -133,7 +133,7 @@ export default function SunChart(props) {
 
     return (
         <>
-            <div className="secondaryTextColor">
+            <div className="chartTitle">
                 Sun Position
             </div>
             <div className="areaChartRow">
