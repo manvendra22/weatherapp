@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './App.css';
-import './utility/utility.css'
+import './utility/common.css'
 import Layout from './utility/Layout'
 
 import Days from './Components/Days/Days'
