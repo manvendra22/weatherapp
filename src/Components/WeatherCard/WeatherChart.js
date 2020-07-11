@@ -66,7 +66,7 @@ export default function WeatherChart(props) {
                     <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
                     <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick chartData={chartData} />} axisLine={false} />
                     <YAxis domain={['dataMin', 'auto']} hide={true} />
-                    <Line type="natural" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 5 }} isAnimationActive={false} />
+                    <Line type="natural" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 5 }} />
                 </LineChart>
             </div>
         </>

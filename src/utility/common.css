@@ -50,3 +50,7 @@
 .secondaryTextColor {
     color: var(--color-text-secondary);
 }
+
+.pointer {
+    cursor: pointer;
+}

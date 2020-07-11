@@ -73,7 +73,7 @@ function SearchBar(props) {
     return (
         <div className="search">
             <div className="searchContainer">
-                <Pin height="22" onClick={setCurrentLocation} />
+                <span onClick={setCurrentLocation} className="pointer"><Pin height="22" /></span>
                 <input type="text" className="searchbar" placeholder="Search Indian Cities" value={city} onChange={e => setCityValue(e.target.value)} />
                 <Search height="22" />
             </div>
