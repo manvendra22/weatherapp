@@ -50,7 +50,7 @@ function App() {
 
   async function fetchCityNameFromLoc(lat, lon) {
     const data = await fetchData(`https://geocode.xyz/${lat},${lon}?json=1`)
-    if (data.city) {
+    if (data.city && data.state && data.country) {
       setCity(`${data.city}, ${data.state}, ${data.country}`)
     }
   }
