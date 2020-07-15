@@ -44,7 +44,8 @@
     align-items: center;
     padding: 10px 15px;
     height: 35px;
-    border-bottom: 1px solid var(--color-divider)
+    border-bottom: 1px solid var(--color-divider);
+    cursor: pointer;
 }
 
 .cityWeather {
