@@ -6,7 +6,7 @@
 
 https://weatherchek.netlify.app/
 
-![Screenshot](weather_check.png)
+![Screenshot](https://res.cloudinary.com/dracarys/image/upload/v1595049189/weather_check.png)
 
 ### Tech stack:
 
