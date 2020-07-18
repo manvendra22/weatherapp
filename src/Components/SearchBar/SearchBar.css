@@ -6,7 +6,7 @@
 .searchContainer {
     display: flex;
     align-items: center;
-    border: 1px solid var(--color-border-placeholder);
+    border: 2px solid var(--color-border-placeholder);
     border-radius: 10px;
     padding: 0px 15px;
     background: var(--color-highlight-bg);
@@ -14,7 +14,7 @@
 }
 
 .searchContainer:focus-within {
-    border: 1px solid var(--color-primary);
+    border: 2px solid var(--color-primary);
 }
 
 .searchbar {
@@ -46,6 +46,10 @@
     height: 35px;
     border-bottom: 1px solid var(--color-divider);
     cursor: pointer;
+}
+
+.cityData:hover {
+    background: var(--color-highlight);
 }
 
 .cityWeather {
