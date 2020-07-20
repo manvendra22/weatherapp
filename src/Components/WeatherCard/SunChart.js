@@ -133,9 +133,6 @@ export default function SunChart(props) {
 
     return (
         <>
-            <div className="chartTitle">
-                Sun Position
-            </div>
             <div className="areaChartRow">
                 <div>
                     <div className="boldText mb-2">{startLabel}</div>
@@ -165,6 +162,9 @@ export default function SunChart(props) {
                     <Area type="basis" dataKey="altitude" stroke="false" fill="url(#splitColor)" dot={<CustomizedDot dayOrNight={dayOrNight} />} isAnimationActive={false} />
                 </AreaChart>
             </ResponsiveContainer>
+            <div className="chartTitle">
+                Sun Position
+            </div>
         </>
     );
 }

@@ -46,6 +46,5 @@
 
 .chartTitle {
     color: var(--color-primary);
-    font-weight: 600;
-    text-transform: uppercase;
+    margin-top: 5px;
 }
