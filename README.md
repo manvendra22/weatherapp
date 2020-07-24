@@ -1,6 +1,6 @@
 # Weather Check
 
-> A mobile first responsive web application for checking weather and sun/moon position of any city with beautiful UI and dark mode.
+> A mobile first responsive web application for checking weather and sun/moon position of any indian city with beautiful UI and dark mode.
 
 ### Live link
 
