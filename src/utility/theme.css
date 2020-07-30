@@ -1,14 +1,14 @@
 :root {
-  --color-white: #FFF;
+  --color-white: #fff;
   --color-black: #000;
 
   /* Light mode colors */
-  --color-gray: #BDBDBD;
+  --color-gray: #bdbdbd;
   --color-granite-gray: #666667;
-  --color-picton-blue: #3AABEA;
-  --color-milk: #FFFDF5;
-  --color-alice-blue: #F5F6F7;
-  --color-whisper: #EEE;
+  --color-picton-blue: #3aabea;
+  --color-milk: #fffdf5;
+  --color-alice-blue: #f5f6f7;
+  --color-whisper: #eee;
 
   /* Dark mode colors */
   /* --color-eerie-black: #161625;
@@ -38,7 +38,7 @@
   --color-divider: var(--color-gray);
   --color-highlight: var(--color-dark-gunmetal);
   --color-highlight-bg: var(--color-black-rock);
-  --color-backgroundColor: var(--color-gun-powder));
+  --color-backgroundColor: var(--color-gun-powder);
   --color-foregroundColor: var(--color-scarpa-flow);
   */
 
