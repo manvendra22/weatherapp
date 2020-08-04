@@ -52,7 +52,7 @@ function SearchBar(props) {
 
         cityWeatherData.forEach(data => {
             const postalCode = data.address.postalCode
-            const url = `https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_API_KEY}`
+            const url = `https://api.openweathermap.org/data/2.5/weather?zip=${postalCode},in&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
             URLs.push(url)
         })
 

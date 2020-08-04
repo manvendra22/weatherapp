@@ -51,22 +51,24 @@ export default function WeatherChart(props) {
     })
 
     return (
-        <div className="mainChart">
-            <LineChart
-                width={2600}
-                height={160}
-                margin={{ top: 15, left: 20, right: 20, bottom: 5 }}
-                data={chartData}
-            >
-                <Tooltip content={<CustomTooltip />} data={data} />
-                <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
-                <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick chartData={chartData} />} axisLine={false} />
-                <YAxis domain={['dataMin', 'auto']} hide={true} />
-                <Line type="natural" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 5 }} isAnimationActive={false} />
-            </LineChart>
+        <>
+            <div className="mainChart">
+                <LineChart
+                    width={2600}
+                    height={160}
+                    margin={{ top: 15, left: 20, right: 20, bottom: 5 }}
+                    data={chartData}
+                >
+                    <Tooltip content={<CustomTooltip />} data={data} />
+                    <CartesianGrid horizontal={false} strokeWidth={2} stroke='#ECECED' />
+                    <XAxis dataKey="time" tickLine={false} height={50} interval={0} tick={<CustomizedAxisTick chartData={chartData} />} axisLine={false} />
+                    <YAxis domain={['dataMin', 'auto']} hide={true} />
+                    <Line type="natural" dataKey="temp" stroke="#3CABEB" strokeWidth={3} dot={{ r: 5 }} isAnimationActive={false} />
+                </LineChart>
+            </div>
             <div className="chartTitle">
                 48 Hours Forecast
             </div>
-        </div>
+        </>
     );
 }

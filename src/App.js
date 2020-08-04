@@ -42,7 +42,7 @@ function App() {
 
   async function fetchLocationData(latitude, longitude) {
     setIsLoading(true)
-    const url = `https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}`
+    const url = `https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
     const data = await fetchData(url)
     setDailyWeatherData(data)
     setIsLoading(false)
