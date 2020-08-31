@@ -18,7 +18,7 @@ function SearchBar(props) {
     const { city, setCity, fetchLocationData, setCurrentLocation } = props
 
     const isInputEmpty = useRef(true)
-    const delayedQuery = useCallback(_.debounce(value => fetchCityAutocompleteData(value), 1000), []);
+    const delayedQuery = useCallback(_.debounce(value => fetchCityAutocompleteData(value), 300), []);
 
     function setCityValue(value) {
         setCity(value)
