@@ -1,58 +1,58 @@
 .search {
-    margin-bottom: 30px;
-    position: relative;
+  margin-bottom: 30px;
+  position: relative;
 }
 
 .searchContainer {
-    display: flex;
-    align-items: center;
-    border: 2px solid var(--color-border-placeholder);
-    border-radius: 10px;
-    padding: 0px 15px;
-    background: var(--color-highlight-bg);
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--color-border-placeholder);
+  border-radius: 10px;
+  padding: 0px 15px;
+  background: var(--color-highlight-bg);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
 .searchContainer:focus-within {
-    border: 2px solid var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .searchbar {
-    width: 90%;
-    height: 50px;
-    border: none;
-    outline: 0;
-    font-size: 14px;
-    margin: 0 10px;
-    color: var(--color-text-primary);
-    background: var(--color-highlight-bg);
+  width: 90%;
+  height: 50px;
+  border: none;
+  outline: 0;
+  font-size: 14px;
+  margin: 0 10px;
+  color: var(--color-text-primary);
+  background: var(--color-highlight-bg);
 }
 
 .cityContainer {
-    position: absolute;
-    width: 100%;
-    background: var(--color-bg);
-    margin-top: 1px;
-    border-radius: 10px;
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
-    z-index: 2;
+  position: absolute;
+  width: 100%;
+  background: var(--color-highlight);
+  margin-top: 1px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  z-index: 2;
 }
 
 .cityData {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    height: 35px;
-    border-bottom: 1px solid var(--color-divider);
-    cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  height: 35px;
+  border-bottom: 1px solid var(--color-divider);
+  cursor: pointer;
 }
 
 .cityData:hover {
-    background: var(--color-highlight);
+  background: var(--color-bg);
 }
 
 .cityWeather {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
