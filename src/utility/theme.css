@@ -1,46 +1,15 @@
 :root {
   --color-white: #fff;
   --color-black: #000;
-
-  /* Light mode colors */
-  --color-gray: #bdbdbd;
-  --color-granite-gray: #666667;
-  --color-picton-blue: #3aabea;
-  --color-milk: #fffdf5;
-  --color-alice-blue: #f5f6f7;
-  --color-whisper: #eee;
-
-  /* Dark mode colors */
-  /* --color-eerie-black: #161625;
-  --color-dark-gunmetal: #1E1E30;
-  --color-aurometalsaurus: #6C757D;
-  --color-black-rock: #2D2D3B;
-  --color-gun-powder: #454551;
-  --color-scarpa-flow: #585862;
-  */
-
-  /* Light mode */
-  --color-bg: var(--color-white);
-  --color-text-primary: var(--color-black);
-  --color-text-secondary: var(--color-granite-gray);
-  --color-primary: var(--color-picton-blue);
-  --color-divider: var(--color-gray);
-  --color-highlight: var(--color-milk);
-  --color-highlight-bg: var(--color-white);
-  --color-backgroundColor: var(--color-alice-blue);
-  --color-foregroundColor: var(--color-whisper);
-
-  /* Dark mode */
-  /* --color-bg: var(--color-eerie-black);
-  --color-text-primary: var(--color-gray);
-  --color-text-secondary: var(--color-gray);
-  --color-primary: var(--color-picton-blue);
-  --color-divider: var(--color-gray);
-  --color-highlight: var(--color-dark-gunmetal);
-  --color-highlight-bg: var(--color-black-rock);
-  --color-backgroundColor: var(--color-gun-powder);
-  --color-foregroundColor: var(--color-scarpa-flow);
-  */
-
+  --color-bg: #fff;
+  --color-text-primary: #000;
+  --color-text-secondary: #666667;
+  --color-primary: #3aabea;
+  --color-divider: #bdbdbd;
+  --color-highlight: #fffdf5;
+  --color-highlight-bg: #fff;
+  --color-search-bg: #fff;
+  --color-backgroundColor: #f5f6f7;
+  --color-foregroundColor: #eee;
   --color-border-placeholder: var(--color-bg);
 }
