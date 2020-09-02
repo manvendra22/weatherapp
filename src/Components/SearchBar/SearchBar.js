@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import _ from "lodash";
+import debounce from "lodash.debounce";
 
 import Loader from './Loader'
 
@@ -18,7 +18,7 @@ function SearchBar(props) {
     const { city, setCity, fetchLocationData, setCurrentLocation } = props
 
     const isInputEmpty = useRef(true)
-    const delayedQuery = useCallback(_.debounce(value => fetchCityAutocompleteData(value), 300), []);
+    const delayedQuery = useCallback(debounce(value => fetchCityAutocompleteData(value), 500), []);
 
     function setCityValue(value) {
         setCity(value)
