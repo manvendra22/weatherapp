@@ -48,6 +48,15 @@
   cursor: pointer;
 }
 
+.cityData:first-child {
+  border-radius: 10px 10px 0 0;
+}
+
+.cityData:last-child {
+  border-bottom: none;
+  border-radius: 0 0 10px 10px;
+}
+
 .cityData:hover {
   background: var(--color-highlight);
 }
