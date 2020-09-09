@@ -4,9 +4,9 @@ import './App.css';
 import './utility/common.css'
 import Layout from './utility/Layout'
 
-import Days from './Components/Days/Days'
-import SearchBar from './Components/SearchBar/SearchBar'
-import WeatherCard from './Components/WeatherCard/WeatherCard'
+import Days from './components/Days/Days'
+import SearchBar from './components/SearchBar/SearchBar'
+import WeatherCard from './components/WeatherCard/WeatherCard'
 
 import { fetchData } from './utility/utility'
 
