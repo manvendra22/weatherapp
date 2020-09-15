@@ -12,6 +12,9 @@ https://weatherchek.netlify.app/
 
 - React
 - CSS
+
+### APIs:
+
 - Geolocation API
 - Open weather map API
 - HERE map place autocomplete API
